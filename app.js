@@ -10,6 +10,7 @@ currentDateEl.textContent = today.toLocaleDateString('en-US', {
 
 // ---------- NOTES (DAILY RESET) ----------
 const noteContainer = document.getElementById('noteContainer');
+const saveNoteBtn = document.getElementById('saveNoteBtn');
 
 const todayKey = today.toDateString();
 let savedNote = JSON.parse(localStorage.getItem('dailyNote')) || {};
@@ -23,6 +24,14 @@ noteContainer.textContent = savedNote.content;
 noteContainer.addEventListener('input', () => {
   savedNote.content = noteContainer.textContent;
   localStorage.setItem('dailyNote', JSON.stringify(savedNote));
+});
+
+// ---------- SAVE BUTTON ----------
+saveNoteBtn.addEventListener('click', () => {
+  savedNote.content = noteContainer.textContent;
+  savedNote.date = todayKey;
+  localStorage.setItem('dailyNote', JSON.stringify(savedNote));
+  alert("Notes saved!");
 });
 
 // ---------- TASKS ----------
@@ -48,7 +57,7 @@ const recurringTasks = [
 ];
 
 // Generate daily mileage task in format MM.DD Miles
-const month = today.getMonth() + 1; // 0-based
+const month = today.getMonth() + 1;
 const day = today.getDate();
 const dailyMileageTask = { desc: `${month}.${day} Miles`, done: false };
 
@@ -68,7 +77,6 @@ if (!mileageExists) tasks.push({ date: todayISO, desc: dailyMileageTask.desc, do
 
 // Save updated tasks
 localStorage.setItem('scheduledTasks', JSON.stringify(tasks));
-
 
 // ---------- RENDER FUNCTION ----------
 function renderTasks() {

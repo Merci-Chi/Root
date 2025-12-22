@@ -23,13 +23,15 @@
       align-items: center;
     }
 
-    h1, h2 {
+    h1 {
       font-family: 'Luckiest Guy', cursive;
       margin-bottom: 10px;
     }
 
     h2 {
+      font-family: 'Luckiest Guy', cursive;
       font-size: 1.3em;
+      margin-bottom: 5px;
     }
 
     .container {
@@ -80,13 +82,14 @@
     ul {
       list-style: none;
       padding-left: 0;
+      font-family: 'Architects Daughter', cursive;
+      margin-bottom: 20px;
     }
 
     li.done {
       text-decoration: line-through;
       color: #888888;
     }
-
   </style>
 </head>
 <body>
@@ -94,11 +97,9 @@
   <!-- Current Date -->
   <h1 id="currentDate"></h1>
 
-  <!-- Today’s Scheduled Tasks -->
-  <div class="container">
-    <h2>Today’s Tasks</h2>
-    <ul id="todayTasks"></ul>
-  </div>
+  <!-- Today’s Tasks (no box) -->
+  <h2>Today’s Tasks</h2>
+  <ul id="todayTasks"></ul>
 
   <!-- Notes -->
   <h1>NOTES</h1>

@@ -10,10 +10,9 @@ currentDateEl.textContent = today.toLocaleDateString('en-US', {
 
 // ---------- NOTES (DAILY RESET) ----------
 const noteContainer = document.getElementById('noteContainer');
-
 const todayKey = today.toDateString();
-let savedNote = JSON.parse(localStorage.getItem('dailyNote')) || {};
 
+let savedNote = JSON.parse(localStorage.getItem('dailyNote')) || {};
 if (savedNote.date !== todayKey) {
   savedNote = { date: todayKey, content: '' };
 }
@@ -31,8 +30,9 @@ const taskDate = document.getElementById('taskDate');
 const addTask = document.getElementById('addTask');
 const taskList = document.getElementById('taskList');
 const todayTasksEl = document.getElementById('todayTasks');
+const taskCounterEl = document.getElementById('taskCounter');
 
-// LOCAL date helper (NO UTC bugs)
+// Local date helper
 function getLocalISODate(date) {
   const y = date.getFullYear();
   const m = String(date.getMonth() + 1).padStart(2, '0');
@@ -42,7 +42,7 @@ function getLocalISODate(date) {
 
 const todayISO = getLocalISODate(today);
 
-// Load + REMOVE past tasks
+// Load and remove past tasks
 let tasks = (JSON.parse(localStorage.getItem('scheduledTasks')) || [])
   .filter(task => task.date >= todayISO);
 
@@ -51,6 +51,9 @@ localStorage.setItem('scheduledTasks', JSON.stringify(tasks));
 function renderTasks() {
   taskList.innerHTML = '';
   todayTasksEl.innerHTML = '';
+
+  let totalToday = 0;
+  let completedToday = 0;
 
   tasks.forEach((task, index) => {
     // Scheduled list
@@ -66,13 +69,35 @@ function renderTasks() {
 
     taskList.appendChild(li);
 
-    // Today's tasks
-    if (task.date === todayISO && !task.done) {
+    // Today's tasks (with checkbox)
+    if (task.date === todayISO) {
+      totalToday++;
+
+      if (task.done) completedToday++;
+
       const liToday = document.createElement('li');
-      liToday.textContent = task.desc;
+
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.checked = task.done;
+
+      checkbox.addEventListener('change', () => {
+        tasks[index].done = checkbox.checked;
+        localStorage.setItem('scheduledTasks', JSON.stringify(tasks));
+        renderTasks();
+      });
+
+      const span = document.createElement('span');
+      span.textContent = task.desc;
+      if (task.done) span.classList.add('done');
+
+      liToday.appendChild(checkbox);
+      liToday.appendChild(span);
       todayTasksEl.appendChild(liToday);
     }
   });
+
+  taskCounterEl.textContent = `${completedToday}/${totalToday}`;
 }
 
 addTask.addEventListener('click', () => {

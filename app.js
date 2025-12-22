@@ -1,38 +1,42 @@
-// Habit Tracker Logic
-const habitInput = document.getElementById("habitInput");
-const addHabit = document.getElementById("addHabit");
-const habitList = document.getElementById("habitList");
-
-// Load saved habits from localStorage
-let habits = JSON.parse(localStorage.getItem("habits")) || [];
-
-function renderHabits() {
-  habitList.innerHTML = "";
-  habits.forEach((habit, index) => {
-    const li = document.createElement("li");
-    li.textContent = habit.name;
-    li.dataset.index = index;
-    if(habit.done) li.classList.add("done");
-    li.addEventListener("click", () => {
-      habits[index].done = !habits[index].done;
-      saveAndRender();
-    });
-    habitList.appendChild(li);
+// Register Service Worker (cache-proof)
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then(regs => {
+    for (let reg of regs) reg.unregister();
+    navigator.serviceWorker.register('service-worker.js')
+      .then(() => console.log('Service Worker Registered'))
+      .catch(err => console.log('Service Worker Failed:', err));
   });
 }
 
-function saveAndRender() {
-  localStorage.setItem("habits", JSON.stringify(habits));
-  renderHabits();
+const noteContainer = document.getElementById('noteContainer');
+const noteInput = document.getElementById('noteInput');
+const saveBtn = document.getElementById('saveNote');
+
+const today = new Date().toDateString(); // e.g., "Mon Dec 23 2025"
+
+// Weekly schedule for notes (example)
+const scheduledNotes = {
+  "Sunday": "Rest day - plan for the week",
+  "Monday": "Check emails and meetings",
+  "Tuesday": "Workout and project work",
+  "Wednesday": "Midweek review",
+  "Thursday": "Team check-in",
+  "Friday": "Finish tasks and plan weekend",
+  "Saturday": "Relax and self-care"
+};
+
+// Load notes from localStorage
+let stored = JSON.parse(localStorage.getItem('dailyNotes')) || {};
+if (stored.date !== today) {
+  // New day → reset notes
+  stored = { date: today, content: scheduledNotes[new Date().toLocaleDateString('en-US', { weekday: 'long' })] || '' };
 }
+noteContainer.textContent = stored.content || '';
+noteInput.value = stored.content || '';
 
-addHabit.addEventListener("click", () => {
-  const val = habitInput.value.trim();
-  if(!val) return;
-  habits.push({ name: val, done: false });
-  habitInput.value = "";
-  saveAndRender();
+// Save note
+saveBtn.addEventListener('click', () => {
+  stored.content = noteInput.value;
+  localStorage.setItem('dailyNotes', JSON.stringify(stored));
+  noteContainer.textContent = stored.content;
 });
-
-// Initial render
-renderHabits();

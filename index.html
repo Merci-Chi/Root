@@ -1,9 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Daily Notes</title>
+  
+  <!-- Google Fonts: Luckiest Guy -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#000000">
   <style>
@@ -17,10 +21,10 @@
       align-items: center;
     }
 
+    /* Apply Luckiest Guy to the header */
     h1 {
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+      font-family: 'Luckiest Guy', cursive;
+      margin-bottom: 20px;
     }
 
     #noteContainer {
@@ -62,12 +66,3 @@
     }
   </style>
 </head>
-<body>
-  <h1>NOTES</h1>
-  <div id="noteContainer"></div>
-  <textarea id="noteInput" placeholder="Write your note here..."></textarea>
-  <button id="saveNote">Save Note</button>
-
-  <script src="app.js"></script>
-</body>
-</html>

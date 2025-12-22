@@ -40,8 +40,9 @@
     }
 
     #todayTasks li {
-      font-size: 1.25rem; /* larger daily tasks */
+      font-size: 1.25rem; /* larger than normal text */
       line-height: 1.6;
+      cursor: pointer;
     }
 
     .container {
@@ -83,6 +84,16 @@
       text-decoration: line-through;
       opacity: 0.6;
     }
+
+    /* Counter bubble next to Today’s Tasks */
+    #taskCounter {
+      font-size: 0.8rem;
+      background: white;
+      color: black;
+      padding: 2px 8px;
+      border-radius: 12px;
+      margin-left: 10px;
+    }
   </style>
 </head>
 <body>
@@ -91,7 +102,7 @@
   <h1 id="currentDate"></h1>
 
   <!-- TODAY'S TASKS -->
-  <h2>Today’s Tasks</h2>
+  <h2>Today’s Tasks <span id="taskCounter">0/0</span></h2>
   <ul id="todayTasks"></ul>
 
   <!-- NOTES -->

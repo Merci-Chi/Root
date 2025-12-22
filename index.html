@@ -53,14 +53,22 @@
       max-width: 500px;
     }
 
-    #todayTasks li {
-      font-size: 1.25rem;
-      line-height: 1.6;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 6px;
-    }
+   #todayTasks li {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+  width: 100%;
+  word-wrap: break-word;
+}
+
+#todayTasks span {
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+
 
     #todayTasks input[type="checkbox"] {
       transform: scale(1.2);

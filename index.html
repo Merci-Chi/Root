@@ -1,8 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Habit Tracker PWA</title>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#000000" />
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    input { padding: 5px; width: 200px; }
+    button { padding: 5px; }
+    li { cursor: pointer; margin: 5px 0; }
+    li.done { text-decoration: line-through; color: gray; }
+  </style>
+</head>
 <body>
   <h1>Habit Tracker</h1>
-  <input id="habitInput" placeholder="Enter a habit">
+  <input type="text" id="habitInput" placeholder="Enter a habit" />
   <button id="addHabit">Add Habit</button>
   <ul id="habitList"></ul>
 
   <script src="app.js"></script>
 </body>
+</html>

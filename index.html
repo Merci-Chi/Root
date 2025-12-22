@@ -1,258 +1,145 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Daily Notes</title><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Daily Notes</title>
+// ---------- DATE HEADER ----------
+const currentDateEl = document.getElementById('currentDate');
+const today = new Date();
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Luckiest+Guy&display=swap" rel="stylesheet">
+currentDateEl.textContent = today.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
 
-  <style>
-    body {
-      background: black;
-      color: white;
-      font-family: 'Architects Daughter', cursive;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
+// ---------- NOTES (DAILY RESET) ----------
+const noteContainer = document.getElementById('noteContainer');
+const saveNoteBtn = document.getElementById('saveNoteBtn');
+
+const todayKey = today.toDateString();
+let savedNote = JSON.parse(localStorage.getItem('dailyNote')) || {};
+
+if (savedNote.date !== todayKey) {
+  savedNote = { date: todayKey, content: '' };
+}
+
+noteContainer.textContent = savedNote.content;
+
+noteContainer.addEventListener('input', () => {
+  savedNote.content = noteContainer.textContent;
+  localStorage.setItem('dailyNote', JSON.stringify(savedNote));
+});
+
+// ---------- SAVE BUTTON ----------
+saveNoteBtn.addEventListener('click', () => {
+  savedNote.content = noteContainer.textContent;
+  savedNote.date = todayKey;
+  localStorage.setItem('dailyNote', JSON.stringify(savedNote));
+  alert("Notes saved!");
+});
+
+// ---------- TASKS ----------
+const taskInput = document.getElementById('taskInput');
+const taskDate = document.getElementById('taskDate');
+const addTask = document.getElementById('addTask');
+const taskList = document.getElementById('taskList');
+const todayTasksEl = document.getElementById('todayTasks');
+
+function getLocalISODate(date) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const d = String(date.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+}
+
+const todayISO = getLocalISODate(today);
+
+// ---------- RECURRING + DAILY DATE-SPECIFIC TASK ----------
+const recurringTasks = [
+  { desc: "T-25", done: false },
+  { desc: "Bullet Journal", done: false }
+];
+
+// Generate daily mileage task in format MM.DD Miles
+const month = today.getMonth() + 1;
+const day = today.getDate();
+const dailyMileageTask = { desc: `${month}.${day} Miles`, done: false };
+
+// Load saved tasks and remove past tasks
+let tasks = (JSON.parse(localStorage.getItem('scheduledTasks')) || [])
+  .filter(task => task.date >= todayISO);
+
+// Add recurring tasks if missing
+recurringTasks.forEach(rt => {
+  const exists = tasks.some(t => t.date === todayISO && t.desc === rt.desc);
+  if (!exists) tasks.push({ date: todayISO, desc: rt.desc, done: false });
+});
+
+// Add today’s mileage task if missing
+const mileageExists = tasks.some(t => t.date === todayISO && t.desc === dailyMileageTask.desc);
+if (!mileageExists) tasks.push({ date: todayISO, desc: dailyMileageTask.desc, done: false });
+
+// Save updated tasks
+localStorage.setItem('scheduledTasks', JSON.stringify(tasks));
+
+// ---------- RENDER FUNCTION ----------
+function renderTasks() {
+  taskList.innerHTML = '';
+  todayTasksEl.innerHTML = '';
+
+  let totalToday = 0;
+  let doneToday = 0;
+
+  tasks.forEach((task, index) => {
+    // Scheduled tasks (bottom section)
+    const li = document.createElement('li');
+    li.textContent = `${task.date} — ${task.desc}`;
+    if (task.done) li.classList.add('done');
+
+    li.addEventListener('click', () => {
+      tasks[index].done = !tasks[index].done;
+      localStorage.setItem('scheduledTasks', JSON.stringify(tasks));
+      renderTasks();
+    });
+
+    taskList.appendChild(li);
+
+    // Today's tasks (top section)
+    if (task.date === todayISO) {
+      const liToday = document.createElement('li');
+      liToday.textContent = task.desc;
+      liToday.style.cursor = 'pointer';
+
+      if (task.done) {
+        liToday.classList.add('done');
+        doneToday++;
+      }
+      totalToday++;
+
+      liToday.addEventListener('click', () => {
+        tasks[index].done = !tasks[index].done;
+        localStorage.setItem('scheduledTasks', JSON.stringify(tasks));
+        renderTasks();
+      });
+
+      todayTasksEl.appendChild(liToday);
     }
+  });
 
-    h1 {
-      font-family: 'Luckiest Guy', cursive;
-      margin-bottom: 10px;
-    }
+  // Update counter bubble
+  const counter = document.getElementById('taskCounter');
+  counter.textContent = `${doneToday}/${totalToday}`;
+}
 
-    h2 {
-      font-family: 'Luckiest Guy', cursive;
-      font-size: 1.3rem;
-      margin-top: 10px;
-      margin-bottom: 5px;
-    }
+// ---------- ADD TASK ----------
+addTask.addEventListener('click', () => {
+  const desc = taskInput.value.trim();
+  const date = taskDate.value;
+  if (!desc || !date) return;
 
-    #todayTasks {
-      list-style: none;
-      padding: 0;
-      margin-bottom: 20px;
-    }
+  tasks.push({ desc, date, done: false });
+  localStorage.setItem('scheduledTasks', JSON.stringify(tasks));
 
-    #todayTasks li {
-      font-size: 1.25rem;
-      line-height: 1.6;
-      cursor: pointer;
-    }
+  taskInput.value = '';
+  taskDate.value = '';
+  renderTasks();
+});
 
-    .container {
-      border: 2px solid white;
-      box-shadow: 0 0 15px white;
-      padding: 20px;
-      width: 90%;
-      max-width: 500px;
-      margin-bottom: 20px;
-    }
-
-    .editable {
-      min-height: 180px;
-      outline: none;
-      white-space: pre-wrap;
-    }
-
-    input, button {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      background: black;
-      color: white;
-      border: 1px solid white;
-      font-family: 'Architects Daughter', cursive;
-      box-shadow: 0 0 8px white;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    li.done {
-      text-decoration: line-through;
-      opacity: 0.6;
-    }
-
-    /* Counter bubble next to Today’s Tasks */
-    #taskCounter {
-      font-size: 0.8rem;
-      background: white;
-      color: black;
-      padding: 2px 8px;
-      border-radius: 12px;
-      margin-left: 10px;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- DATE HEADER -->
-  <h1 id="currentDate"></h1>
-
-  <!-- TODAY'S TASKS -->
-  <h2>Today’s Tasks <span id="taskCounter">0/0</span></h2>
-  <ul id="todayTasks"></ul>
-
-  <!-- NOTES HEADER + SAVE BUTTON -->
-  <div style="display:flex; align-items:center; margin-bottom:10px;">
-    <h1 style="margin-right:10px;">NOTES</h1>
-    <button id="saveNoteBtn" style="
-        padding:5px 10px;
-        font-family: 'Architects Daughter', cursive;
-        font-size:0.9rem;
-        cursor:pointer;
-        box-shadow:0 0 8px white;
-        background:black;
-        color:white;
-        border:1px solid white;
-    ">Save</button>
-  </div>
-  <div id="noteContainer" class="container editable" contenteditable="true"></div>
-
-  <!-- SCHEDULED TASKS -->
-  <h2>Scheduled Tasks</h2>
-  <div class="container">
-    <input id="taskInput" placeholder="Task description" />
-    <input id="taskDate" type="date" />
-    <button id="addTask">Add Task</button>
-    <ul id="taskList"></ul>
-  </div>
-
-  <script src="app.js"></script>
-</body>
-</html>
-
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Luckiest+Guy&display=swap" rel="stylesheet">
-
-  <style>
-    body {
-      background: black;
-      color: white;
-      font-family: 'Architects Daughter', cursive;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-    }
-
-    h1 {
-      font-family: 'Luckiest Guy', cursive;
-      margin-bottom: 10px;
-    }
-
-    h2 {
-      font-family: 'Luckiest Guy', cursive;
-      font-size: 1.3rem;
-      margin-top: 10px;
-      margin-bottom: 5px;
-    }
-
-    #todayTasks {
-      list-style: none;
-      padding: 0;
-      margin-bottom: 20px;
-    }
-
-    #todayTasks li {
-      font-size: 1.25rem; /* larger than normal text */
-      line-height: 1.6;
-      cursor: pointer;
-    }
-
-    .container {
-      border: 2px solid white;
-      box-shadow: 0 0 15px white;
-      padding: 20px;
-      width: 90%;
-      max-width: 500px;
-      margin-bottom: 20px;
-    }
-
-    .editable {
-      min-height: 180px;
-      outline: none;
-      white-space: pre-wrap;
-    }
-
-    input, button {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      background: black;
-      color: white;
-      border: 1px solid white;
-      font-family: 'Architects Daughter', cursive;
-      box-shadow: 0 0 8px white;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    li.done {
-      text-decoration: line-through;
-      opacity: 0.6;
-    }
-
-    /* Counter bubble next to Today’s Tasks */
-    #taskCounter {
-      font-size: 0.8rem;
-      background: white;
-      color: black;
-      padding: 2px 8px;
-      border-radius: 12px;
-      margin-left: 10px;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- DATE HEADER -->
-  <h1 id="currentDate"></h1>
-
-  <!-- TODAY'S TASKS -->
-  <h2>Today’s Tasks <span id="taskCounter">0/0</span></h2>
-  <ul id="todayTasks"></ul>
-
-  <!-- NOTES -->
-  <h1>NOTES</h1>
-  <div id="noteContainer" class="container editable" contenteditable="true"></div>
-
-  <!-- SCHEDULED TASKS -->
-  <h2>Scheduled Tasks</h2>
-  <div class="container">
-    <input id="taskInput" placeholder="Task description" />
-    <input id="taskDate" type="date" />
-    <button id="addTask">Add Task</button>
-    <ul id="taskList"></ul>
-  </div>
-
-  <script src="app.js"></script>
-</body>
-</html>
+// Initial render
+renderTasks();

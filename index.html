@@ -11,105 +11,107 @@
   <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Luckiest+Guy&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      background: black;
-      color: white;
-      font-family: 'Architects Daughter', cursive;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start; /* left align everything */
-      padding: 20px;
-    }
+    * {
+  box-sizing: border-box; /* include padding/borders in width */
+}
 
-    h1 {
-      font-family: 'Luckiest Guy', cursive;
-      margin-bottom: 5px;
-    }
+body {
+  background: black;
+  color: white;
+  font-family: 'Architects Daughter', cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* left align */
+  padding: 10px;
+  margin: 0;
+}
 
-    h2 {
-      font-family: 'Luckiest Guy', cursive;
-      font-size: 1.3rem;
-      margin-top: 10px;
-      margin-bottom: 5px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+h1 {
+  font-family: 'Luckiest Guy', cursive;
+  margin-bottom: 5px;
+}
 
-    /* Counter bubble */
-    .counter {
-      font-size: 0.9rem;
-      border: 1px solid white;
-      padding: 2px 8px;
-      border-radius: 20px;
-      box-shadow: 0 0 6px white;
-    }
+h2 {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 1.3rem;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-    #todayTasks {
-      list-style: none;
-      padding: 0;
-      margin-bottom: 20px;
-      width: 100%;
-      max-width: 500px;
-    }
+.counter {
+  font-size: 0.9rem;
+  border: 1px solid white;
+  padding: 2px 8px;
+  border-radius: 20px;
+  box-shadow: 0 0 6px white;
+}
 
-    #todayTasks li {
-      font-size: 1.25rem;
-      line-height: 1.6;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 6px;
-      white-space: nowrap; /* do not wrap text */
-      overflow-x: auto;    /* scroll horizontally if needed */
-      padding-left: 4px;   /* small indent for paragraph style */
-    }
+#todayTasks {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+  width: 100%; /* fit viewport width */
+}
 
-    #todayTasks input[type="checkbox"] {
-      flex-shrink: 0; /* keep checkbox visible */
-      transform: scale(1.2);
-      cursor: pointer;
-    }
+#todayTasks li {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+  white-space: normal; /* allow wrapping */
+  word-break: break-word; /* wrap long words */
+}
 
-    .container {
-      border: 2px solid white;
-      box-shadow: 0 0 15px white;
-      padding: 20px;
-      width: 90%;
-      max-width: 500px;
-      margin-bottom: 20px;
-    }
+#todayTasks input[type="checkbox"] {
+  flex-shrink: 0; /* checkbox stays visible */
+  transform: scale(1.1);
+  cursor: pointer;
+}
 
-    .editable {
-      min-height: 180px;
-      outline: none;
-      white-space: pre-wrap;
-    }
+.container {
+  border: 2px solid white;
+  box-shadow: 0 0 15px white;
+  padding: 15px;
+  width: 100%; /* fit viewport */
+  margin-bottom: 20px;
+}
 
-    input, button {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      background: black;
-      color: white;
-      border: 1px solid white;
-      font-family: 'Architects Daughter', cursive;
-      box-shadow: 0 0 8px white;
-    }
+.editable {
+  min-height: 150px;
+  outline: none;
+  white-space: pre-wrap;
+}
 
-    button {
-      cursor: pointer;
-    }
+input, button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: black;
+  color: white;
+  border: 1px solid white;
+  font-family: 'Architects Daughter', cursive;
+  box-shadow: 0 0 6px white;
+}
 
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
+button {
+  cursor: pointer;
+}
 
-    li.done span {
-      text-decoration: line-through;
-      opacity: 0.6;
-    }
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li.done span {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
   </style>
 </head>
 <body>

@@ -32,7 +32,6 @@ const addTask = document.getElementById('addTask');
 const taskList = document.getElementById('taskList');
 const todayTasksEl = document.getElementById('todayTasks');
 
-// LOCAL date helper (NO UTC bugs)
 function getLocalISODate(date) {
   const y = date.getFullYear();
   const m = String(date.getMonth() + 1).padStart(2, '0');
@@ -42,10 +41,26 @@ function getLocalISODate(date) {
 
 const todayISO = getLocalISODate(today);
 
-// Load + REMOVE past tasks
+// ---------- RECURRING DAILY TASKS ----------
+const recurringTasks = [
+  { desc: "Check emails", done: false },
+  { desc: "Morning workout", done: false },
+  { desc: "Plan day", done: false }
+];
+
+// Load saved tasks
 let tasks = (JSON.parse(localStorage.getItem('scheduledTasks')) || [])
   .filter(task => task.date >= todayISO);
 
+// Add recurring tasks if they don't exist today
+recurringTasks.forEach(rt => {
+  const exists = tasks.some(t => t.date === todayISO && t.desc === rt.desc);
+  if (!exists) {
+    tasks.push({ date: todayISO, desc: rt.desc, done: false });
+  }
+});
+
+// Save updated tasks
 localStorage.setItem('scheduledTasks', JSON.stringify(tasks));
 
 // ---------- RENDER FUNCTION ----------

@@ -10,7 +10,6 @@ if ('serviceWorker' in navigator) {
 
 // Daily Notes Logic
 const noteContainer = document.getElementById('noteContainer');
-const noteInput = document.getElementById('noteInput');
 const saveBtn = document.getElementById('saveNote');
 
 const today = new Date().toDateString();
@@ -25,20 +24,20 @@ const scheduledNotes = {
   "Saturday": "Relax and self-care"
 };
 
+// Load note from localStorage
 let stored = JSON.parse(localStorage.getItem('dailyNotes')) || {};
 if (stored.date !== today) {
   const weekday = new Date().toLocaleDateString('en-US', { weekday: 'long' });
   stored = { date: today, content: scheduledNotes[weekday] || '' };
 }
 noteContainer.textContent = stored.content || '';
-noteInput.value = stored.content || '';
 
+// Save note
 saveBtn.addEventListener('click', () => {
-  stored.content = noteInput.value;
+  stored.content = noteContainer.textContent;
   localStorage.setItem('dailyNotes', JSON.stringify(stored));
-  noteContainer.textContent = stored.content;
 });
-
+ 
 // Scheduled Tasks Logic
 const taskInput = document.getElementById('taskInput');
 const taskDate = document.getElementById('taskDate');
@@ -51,7 +50,7 @@ function renderTasks() {
   taskList.innerHTML = '';
   const todayStr = new Date().toISOString().split('T')[0];
   tasks.forEach((task, index) => {
-    if (task.date === todayStr) { // only show today's tasks
+    if (task.date === todayStr) {
       const li = document.createElement('li');
       li.textContent = task.desc;
       li.dataset.index = index;

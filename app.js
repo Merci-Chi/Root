@@ -1,16 +1,9 @@
-// Register Service Worker
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("service-worker.js")
-    .then(() => console.log("Service Worker Registered"))
-    .catch(err => console.log("Service Worker Failed:", err));
-}
-
 // Habit Tracker Logic
 const habitInput = document.getElementById("habitInput");
 const addHabit = document.getElementById("addHabit");
 const habitList = document.getElementById("habitList");
 
-// Load saved habits
+// Load saved habits from localStorage
 let habits = JSON.parse(localStorage.getItem("habits")) || [];
 
 function renderHabits() {
@@ -41,4 +34,5 @@ addHabit.addEventListener("click", () => {
   saveAndRender();
 });
 
+// Initial render
 renderHabits();

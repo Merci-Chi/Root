@@ -23,7 +23,7 @@
 
     h1 {
       font-family: 'Luckiest Guy', cursive;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
 
     h2 {
@@ -31,17 +31,40 @@
       font-size: 1.3rem;
       margin-top: 10px;
       margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Counter bubble */
+    .counter {
+      font-size: 0.9rem;
+      border: 1px solid white;
+      padding: 2px 8px;
+      border-radius: 20px;
+      box-shadow: 0 0 6px white;
     }
 
     #todayTasks {
       list-style: none;
       padding: 0;
       margin-bottom: 20px;
+      width: 100%;
+      max-width: 500px;
     }
 
     #todayTasks li {
-      font-size: 1.25rem; /* larger daily tasks */
+      font-size: 1.25rem;
       line-height: 1.6;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    #todayTasks input[type="checkbox"] {
+      transform: scale(1.2);
+      cursor: pointer;
     }
 
     .container {
@@ -87,11 +110,14 @@
 </head>
 <body>
 
-  <!-- DATE HEADER -->
+  <!-- DATE -->
   <h1 id="currentDate"></h1>
 
-  <!-- TODAY'S TASKS -->
-  <h2>Today’s Tasks</h2>
+  <!-- TODAY TASKS -->
+  <h2>
+    Today’s Tasks
+    <span id="taskCounter" class="counter">0/0</span>
+  </h2>
   <ul id="todayTasks"></ul>
 
   <!-- NOTES -->

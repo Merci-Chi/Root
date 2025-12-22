@@ -43,9 +43,8 @@ const todayISO = getLocalISODate(today);
 
 // ---------- RECURRING + DAILY DATE-SPECIFIC TASK ----------
 const recurringTasks = [
-  { desc: "Check emails", done: false },
-  { desc: "Morning workout", done: false },
-  { desc: "Plan day", done: false }
+  { desc: "T-25", done: false },
+  { desc: "Bullet Journal", done: false }
 ];
 
 // Generate daily mileage task in format MM.DD Miles

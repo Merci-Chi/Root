@@ -43,9 +43,8 @@ const todayISO = getLocalISODate(today);
 
 // ---------- RECURRING DAILY TASKS ----------
 const recurringTasks = [
-  { desc: "Check emails", done: false },
-  { desc: "Morning workout", done: false },
-  { desc: "Plan day", done: false }
+  { desc: "T-25", done: false },
+  { desc: "Bullet Journal", done: false }
 ];
 
 // Load saved tasks

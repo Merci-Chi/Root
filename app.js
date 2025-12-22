@@ -8,11 +8,18 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// Daily Notes Logic
+// ---------- Current Date ----------
+const currentDateEl = document.getElementById('currentDate');
+const todayDate = new Date();
+const options = { year: 'numeric', month: 'long', day: 'numeric' };
+currentDateEl.textContent = todayDate.toLocaleDateString('en-US', options);
+
+// ---------- Daily Notes ----------
 const noteContainer = document.getElementById('noteContainer');
 const saveBtn = document.getElementById('saveNote');
 
-const today = new Date().toDateString();
+const todayStr = todayDate.toDateString();
+const weekday = todayDate.toLocaleDateString('en-US', { weekday: 'long' });
 
 const scheduledNotes = {
   "Sunday": "Rest day - plan for the week",
@@ -26,9 +33,8 @@ const scheduledNotes = {
 
 // Load note from localStorage
 let stored = JSON.parse(localStorage.getItem('dailyNotes')) || {};
-if (stored.date !== today) {
-  const weekday = new Date().toLocaleDateString('en-US', { weekday: 'long' });
-  stored = { date: today, content: scheduledNotes[weekday] || '' };
+if (stored.date !== todayStr) {
+  stored = { date: todayStr, content: scheduledNotes[weekday] || '' };
 }
 noteContainer.textContent = stored.content || '';
 
@@ -37,30 +43,43 @@ saveBtn.addEventListener('click', () => {
   stored.content = noteContainer.textContent;
   localStorage.setItem('dailyNotes', JSON.stringify(stored));
 });
- 
-// Scheduled Tasks Logic
+
+// ---------- Scheduled Tasks ----------
 const taskInput = document.getElementById('taskInput');
 const taskDate = document.getElementById('taskDate');
 const addTask = document.getElementById('addTask');
 const taskList = document.getElementById('taskList');
+const todayTasksEl = document.getElementById('todayTasks');
 
 let tasks = JSON.parse(localStorage.getItem('scheduledTasks')) || [];
 
 function renderTasks() {
+  // Clear lists
   taskList.innerHTML = '';
-  const todayStr = new Date().toISOString().split('T')[0];
+  todayTasksEl.innerHTML = '';
+
+  const todayISO = todayDate.toISOString().split('T')[0];
+
   tasks.forEach((task, index) => {
-    if (task.date === todayStr) {
-      const li = document.createElement('li');
-      li.textContent = task.desc;
-      li.dataset.index = index;
-      li.addEventListener('click', () => {
-        tasks[index].done = !tasks[index].done;
-        localStorage.setItem('scheduledTasks', JSON.stringify(tasks));
-        renderTasks();
-      });
-      if(task.done) li.classList.add('done');
-      taskList.appendChild(li);
+    // Scheduled tasks section (all tasks)
+    const liAll = document.createElement('li');
+    liAll.textContent = `${task.date}: ${task.desc}`;
+    liAll.dataset.index = index;
+    liAll.addEventListener('click', () => {
+      tasks[index].done = !tasks[index].done;
+      localStorage.setItem('scheduledTasks', JSON.stringify(tasks));
+      renderTasks();
+    });
+    if(task.done) liAll.classList.add('done');
+    taskList.appendChild(liAll);
+
+    // Today’s tasks
+    if(task.date === todayISO) {
+      const liToday = document.createElement('li');
+      liToday.textContent = task.desc;
+      liToday.dataset.index = index;
+      if(task.done) liToday.classList.add('done');
+      todayTasksEl.appendChild(liToday);
     }
   });
 }

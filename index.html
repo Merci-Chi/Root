@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daily Dashboard</title>
-  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daily Notes</title>
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Luckiest+Guy&display=swap" rel="stylesheet">
 
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#000000">
   <style>
     body {
+      background: black;
+      color: white;
       font-family: 'Architects Daughter', cursive;
-      background-color: #000000;
-      color: #ffffff;
-      padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding: 20px;
     }
 
     h1 {
@@ -30,91 +28,81 @@
 
     h2 {
       font-family: 'Luckiest Guy', cursive;
-      font-size: 1.3em;
+      font-size: 1.3rem;
+      margin-top: 10px;
       margin-bottom: 5px;
     }
 
+    #todayTasks {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+
+    #todayTasks li {
+      font-size: 1.25rem; /* larger daily tasks */
+      line-height: 1.6;
+    }
+
     .container {
-      border: 2px solid #ffffff;
+      border: 2px solid white;
+      box-shadow: 0 0 15px white;
       padding: 20px;
       width: 90%;
       max-width: 500px;
-      box-shadow: 0 0 15px #ffffff;
       margin-bottom: 20px;
-      white-space: pre-wrap;
-      font-family: 'Architects Daughter', cursive;
-      background-color: #000000;
-      color: #ffffff;
-      overflow-y: auto;
     }
 
     .editable {
-      outline: none;
       min-height: 180px;
+      outline: none;
+      white-space: pre-wrap;
     }
 
-    input[type="text"], input[type="date"] {
+    input, button {
       width: 100%;
-      background-color: #000000;
-      color: #ffffff;
-      border: 1px solid #ffffff;
       padding: 10px;
-      font-size: 16px;
-      box-shadow: 0 0 8px #ffffff;
       margin-bottom: 10px;
+      background: black;
+      color: white;
+      border: 1px solid white;
       font-family: 'Architects Daughter', cursive;
+      box-shadow: 0 0 8px white;
     }
 
     button {
-      padding: 10px 20px;
-      border: 2px solid #ffffff;
-      background-color: #000000;
-      color: #ffffff;
       cursor: pointer;
-      box-shadow: 0 0 8px #ffffff;
-      margin-top: 5px;
-    }
-
-    button:hover {
-      box-shadow: 0 0 16px #ffffff;
     }
 
     ul {
       list-style: none;
       padding-left: 0;
-      font-family: 'Architects Daughter', cursive;
-      margin-bottom: 20px;
     }
 
     li.done {
       text-decoration: line-through;
-      color: #888888;
+      opacity: 0.6;
     }
   </style>
 </head>
 <body>
 
-  <!-- Current Date -->
+  <!-- DATE HEADER -->
   <h1 id="currentDate"></h1>
 
-  <!-- Today’s Tasks (no box) -->
+  <!-- TODAY'S TASKS -->
   <h2>Today’s Tasks</h2>
   <ul id="todayTasks"></ul>
-  
-  #todayTasks li {
-  font-size: 1.25rem; /* larger than normal text */
-  line-height: 1.6;
-}
 
-  <!-- Notes -->
+  <!-- NOTES -->
   <h1>NOTES</h1>
   <div id="noteContainer" class="container editable" contenteditable="true"></div>
 
-  <!-- Scheduled Tasks Section -->
+  <!-- SCHEDULED TASKS -->
   <h2>Scheduled Tasks</h2>
   <div class="container">
-    <input type="text" id="taskInput" placeholder="Task description">
-    <input type="date" id="taskDate">
+    <input id="taskInput" placeholder="Task description" />
+    <input id="taskDate" type="date" />
     <button id="addTask">Add Task</button>
     <ul id="taskList"></ul>
   </div>

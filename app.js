@@ -60,19 +60,16 @@ function renderTasks() {
     const li = document.createElement('li');
     li.textContent = `${task.date} — ${task.desc}`;
     if (task.done) li.classList.add('done');
-
     li.addEventListener('click', () => {
       tasks[index].done = !tasks[index].done;
       localStorage.setItem('scheduledTasks', JSON.stringify(tasks));
       renderTasks();
     });
-
     taskList.appendChild(li);
 
-    // Today's tasks (with checkbox)
+    // Today's tasks with checkbox
     if (task.date === todayISO) {
       totalToday++;
-
       if (task.done) completedToday++;
 
       const liToday = document.createElement('li');

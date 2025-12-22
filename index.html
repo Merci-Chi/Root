@@ -1,60 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Habit Tracker PWA</title>
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#000000" />
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #000000; /* black background */
-    color: #ffffff; /* white text */
-    padding: 20px;
-  }
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#000000">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000000;
+      color: #ffffff;
+      padding: 20px;
+    }
 
-  input {
-    padding: 8px;
-    width: 200px;
-    border: 2px solid #ffffff;
-    background-color: #000000;
-    color: #ffffff;
-    box-shadow: 0 0 8px #ffffff;
-  }
+    input {
+      padding: 8px;
+      width: 200px;
+      border: 2px solid #ffffff;
+      background-color: #000000;
+      color: #ffffff;
+    }
 
-  button {
-    padding: 8px;
-    border: 2px solid #ffffff;
-    background-color: #000000;
-    color: #ffffff;
-    cursor: pointer;
-    box-shadow: 0 0 8px #ffffff;
-  }
+    button {
+      padding: 8px;
+      border: 2px solid #ffffff;
+      background-color: #000000;
+      color: #ffffff;
+      cursor: pointer;
+    }
 
-  button:hover {
-    box-shadow: 0 0 16px #ffffff;
-  }
+    li {
+      cursor: pointer;
+      margin: 5px 0;
+    }
 
-  li {
-    cursor: pointer;
-    margin: 5px 0;
-    padding: 5px;
-    text-shadow: 0 0 8px #ffffff;
-    transition: text-shadow 0.2s;
-  }
-
-  li.done {
-    text-decoration: line-through;
-    color: #aaaaaa; /* dimmer for completed habits */
-    text-shadow: 0 0 4px #ffffff;
-  }
-</style>
-
+    li.done {
+      text-decoration: line-through;
+      color: #888888;
+    }
+  </style>
 </head>
 <body>
   <h1>Habit Tracker</h1>
-  <input type="text" id="habitInput" placeholder="Enter a habit" />
+  <input type="text" id="habitInput" placeholder="Enter a habit">
   <button id="addHabit">Add Habit</button>
   <ul id="habitList"></ul>
 

@@ -73,11 +73,10 @@ function renderTasks() {
     if(task.done) liAll.classList.add('done');
     taskList.appendChild(liAll);
 
-    // Today’s tasks
+    // Today’s tasks (plain list, Architects Daughter font)
     if(task.date === todayISO) {
       const liToday = document.createElement('li');
       liToday.textContent = task.desc;
-      liToday.dataset.index = index;
       if(task.done) liToday.classList.add('done');
       todayTasksEl.appendChild(liToday);
     }

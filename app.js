@@ -41,26 +41,35 @@ function getLocalISODate(date) {
 
 const todayISO = getLocalISODate(today);
 
-// ---------- RECURRING DAILY TASKS ----------
+// ---------- RECURRING + DAILY DATE-SPECIFIC TASK ----------
 const recurringTasks = [
-  { desc: "T-25", done: false },
-  { desc: "Bullet Journal", done: false }
+  { desc: "Check emails", done: false },
+  { desc: "Morning workout", done: false },
+  { desc: "Plan day", done: false }
 ];
 
-// Load saved tasks
+// Generate daily mileage task in format MM.DD Miles
+const month = today.getMonth() + 1; // 0-based
+const day = today.getDate();
+const dailyMileageTask = { desc: `${month}.${day} Miles`, done: false };
+
+// Load saved tasks and remove past tasks
 let tasks = (JSON.parse(localStorage.getItem('scheduledTasks')) || [])
   .filter(task => task.date >= todayISO);
 
-// Add recurring tasks if they don't exist today
+// Add recurring tasks if missing
 recurringTasks.forEach(rt => {
   const exists = tasks.some(t => t.date === todayISO && t.desc === rt.desc);
-  if (!exists) {
-    tasks.push({ date: todayISO, desc: rt.desc, done: false });
-  }
+  if (!exists) tasks.push({ date: todayISO, desc: rt.desc, done: false });
 });
+
+// Add today’s mileage task if missing
+const mileageExists = tasks.some(t => t.date === todayISO && t.desc === dailyMileageTask.desc);
+if (!mileageExists) tasks.push({ date: todayISO, desc: dailyMileageTask.desc, done: false });
 
 // Save updated tasks
 localStorage.setItem('scheduledTasks', JSON.stringify(tasks));
+
 
 // ---------- RENDER FUNCTION ----------
 function renderTasks() {

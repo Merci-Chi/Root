@@ -1,43 +1,72 @@
-// ---------- Scheduled Tasks ----------
+// ---------- DATE HEADER ----------
+const currentDateEl = document.getElementById('currentDate');
+const today = new Date();
 
+currentDateEl.textContent = today.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
+// ---------- NOTES (DAILY RESET) ----------
+const noteContainer = document.getElementById('noteContainer');
+
+const todayKey = today.toDateString();
+let savedNote = JSON.parse(localStorage.getItem('dailyNote')) || {};
+
+if (savedNote.date !== todayKey) {
+  savedNote = { date: todayKey, content: '' };
+}
+
+noteContainer.textContent = savedNote.content;
+
+noteContainer.addEventListener('input', () => {
+  savedNote.content = noteContainer.textContent;
+  localStorage.setItem('dailyNote', JSON.stringify(savedNote));
+});
+
+// ---------- TASKS ----------
 const taskInput = document.getElementById('taskInput');
 const taskDate = document.getElementById('taskDate');
 const addTask = document.getElementById('addTask');
 const taskList = document.getElementById('taskList');
 const todayTasksEl = document.getElementById('todayTasks');
 
-let tasks = JSON.parse(localStorage.getItem('scheduledTasks')) || [];
-
-// LOCAL date (no UTC bugs)
+// LOCAL date helper (NO UTC bugs)
 function getLocalISODate(date) {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const d = String(date.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
 }
+
+const todayISO = getLocalISODate(today);
+
+// Load + REMOVE past tasks
+let tasks = (JSON.parse(localStorage.getItem('scheduledTasks')) || [])
+  .filter(task => task.date >= todayISO);
+
+localStorage.setItem('scheduledTasks', JSON.stringify(tasks));
 
 function renderTasks() {
   taskList.innerHTML = '';
   todayTasksEl.innerHTML = '';
 
-  const today = new Date();
-  const todayISO = getLocalISODate(today);
-
   tasks.forEach((task, index) => {
-    // Scheduled Tasks list (all)
-    const liAll = document.createElement('li');
-    liAll.textContent = `${task.date} — ${task.desc}`;
-    if (task.done) liAll.classList.add('done');
+    // Scheduled list
+    const li = document.createElement('li');
+    li.textContent = `${task.date} — ${task.desc}`;
+    if (task.done) li.classList.add('done');
 
-    liAll.addEventListener('click', () => {
+    li.addEventListener('click', () => {
       tasks[index].done = !tasks[index].done;
       localStorage.setItem('scheduledTasks', JSON.stringify(tasks));
       renderTasks();
     });
 
-    taskList.appendChild(liAll);
+    taskList.appendChild(li);
 
-    // Today’s Tasks (top section)
+    // Today's tasks
     if (task.date === todayISO && !task.done) {
       const liToday = document.createElement('li');
       liToday.textContent = task.desc;
@@ -59,5 +88,5 @@ addTask.addEventListener('click', () => {
   renderTasks();
 });
 
-// Initial load
+// Initial render
 renderTasks();

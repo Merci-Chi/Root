@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daily Notes & Scheduler</title>
+  <title>Daily Dashboard</title>
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,14 +23,13 @@
       align-items: center;
     }
 
-    h1 {
+    h1, h2 {
       font-family: 'Luckiest Guy', cursive;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
 
     h2 {
-      margin-top: 40px;
-      margin-bottom: 10px;
+      font-size: 1.3em;
     }
 
     .container {
@@ -38,7 +37,6 @@
       padding: 20px;
       width: 90%;
       max-width: 500px;
-      min-height: 200px;
       box-shadow: 0 0 15px #ffffff;
       margin-bottom: 20px;
       white-space: pre-wrap;
@@ -88,13 +86,25 @@
       text-decoration: line-through;
       color: #888888;
     }
+
   </style>
 </head>
 <body>
+
+  <!-- Current Date -->
+  <h1 id="currentDate"></h1>
+
+  <!-- Today’s Scheduled Tasks -->
+  <div class="container">
+    <h2>Today’s Tasks</h2>
+    <ul id="todayTasks"></ul>
+  </div>
+
+  <!-- Notes -->
   <h1>NOTES</h1>
   <div id="noteContainer" class="container editable" contenteditable="true"></div>
-  <button id="saveNote">Save Note</button>
 
+  <!-- Scheduled Tasks Section -->
   <h2>Scheduled Tasks</h2>
   <div class="container">
     <input type="text" id="taskInput" placeholder="Task description">

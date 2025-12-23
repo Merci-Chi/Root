@@ -219,7 +219,7 @@
       box-shadow: 0 0 8px white;
     }
 
-<input id="taskDate" type="date" style="padding:5px 10px" value="" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Select a Date'" />
+<input id="taskDate" type="text" style="padding:5px 10px" value="" placeholder="Select a Date" />
 <p id="dateDisplay" style="color: white;"></p>
 
 <script>
@@ -233,6 +233,14 @@
   // Display the current date outside the input as a placeholder
   const dateDisplay = document.getElementById('dateDisplay');
   dateDisplay.innerText = `Current Date: ${today}`;
+
+  // Add date format validation
+  taskDateInput.addEventListener('blur', function() {
+    const value = taskDateInput.value;
+    if (!value.match(/^\d{4}-\d{2}-\d{2}$/)) {
+      taskDateInput.value = today; // Reset to today's date if invalid
+    }
+  });
 </script>
 
 

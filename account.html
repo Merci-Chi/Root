@@ -58,15 +58,14 @@
       padding: 10px;
     }
 
-    /* Month grid with sticky first day */
-    .month {
-      display: grid;
-      grid-template-columns: 30px repeat(30, 24px);
-      gap: 2px;
-      overflow-x: auto;
-      justify-content: start;
-      margin-bottom: 20px;
-    }
+.month {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 24px); /* One column per day */
+  gap: 2px;
+  overflow-x: auto;
+  justify-content: start;
+  margin-bottom: 20px;
+}
 
     .dayBox {
       width: 24px;
@@ -85,13 +84,12 @@
       color: white;
     }
 
-    /* Sticky first day */
-    .dayBox:first-child {
-      position: sticky;
-      left: 0;
-      background-color: rgba(50, 50, 50, 0.8);
-      z-index: 2;
-    }
+.dayBox:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.7); /* slightly darker, but same width as other days */
+}
 
     .monthLabel {
       grid-column: span 31;

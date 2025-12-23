@@ -219,18 +219,22 @@
       box-shadow: 0 0 8px white;
     }
 
-<input id="taskDate" type="date" style="padding:5px 10px" value="" placeholder="" onfocus="this.placeholder = ''" onblur="this.placeholder = this.value === '' ? 'Select a Date' : this.value" />
+<input id="taskDate" type="date" style="padding:5px 10px" value="" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Select a Date'" />
+<p id="dateDisplay" style="color: white;"></p>
 
 <script>
   // Get today's date in YYYY-MM-DD format
   const today = new Date().toISOString().split('T')[0];
 
   // Set the input value to today's date
-  document.getElementById('taskDate').value = today;
+  const taskDateInput = document.getElementById('taskDate');
+  taskDateInput.value = today;
 
-  // Set the placeholder to today's date
-  document.getElementById('taskDate').placeholder = today;
+  // Display the current date outside the input as a placeholder
+  const dateDisplay = document.getElementById('dateDisplay');
+  dateDisplay.innerText = `Current Date: ${today}`;
 </script>
+
 
     #addTask {
       width: 100%;

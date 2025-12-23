@@ -11,56 +11,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Luckiest+Guy&display=swap" rel="stylesheet">
 
   <style>
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background: black; /* fallback color */
-}
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: black; /* fallback */
+    }
 
-body {
-  background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, rgba(0,0,0,1) 100%), 
-              url('Forest.JPG') no-repeat center center fixed;
-  background-size: cover;
-  color: white;
-  font-family: 'Architects Daughter', cursive;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-}
-
-<!-- FIXED BOTTOM BUTTON BAR -->
-<div id="bottomBar" style="
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-    background: rgba(0,0,0,0.5);
-    z-index: 1000;
-">
-    <button class="bottomBtn">Button 1</button>
-    <button class="bottomBtn">Button 2</button>
-    <button class="bottomBtn">Button 3</button>
-</div>
-.bottomBtn {
-    padding: 10px 20px;
-    border: 2px solid white;
-    background: black;
-    color: white;
-    font-family: 'Architects Daughter', cursive;
-    cursor: pointer;
-    box-shadow: 0 0 10px white;
-    border-radius: 8px;
-    transition: 0.2s;
-}
-
-.bottomBtn:hover {
-    box-shadow: 0 0 15px white, 0 0 25px white;
-}
+    body {
+      background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, rgba(0,0,0,1) 100%),
+                  url('Forest.JPG') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      font-family: 'Architects Daughter', cursive;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
 
     h1 {
       font-family: 'Luckiest Guy', cursive;
@@ -135,6 +103,35 @@ body {
       border-radius: 12px;
       margin-left: 10px;
     }
+
+    /* Bottom bar buttons */
+    #bottomBar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+    }
+
+    .bottomBtn {
+      padding: 10px 20px;
+      border: 2px solid white;
+      background: black;
+      color: white;
+      font-family: 'Architects Daughter', cursive;
+      cursor: pointer;
+      box-shadow: 0 0 10px white;
+      border-radius: 8px;
+      transition: 0.2s;
+    }
+
+    .bottomBtn:hover {
+      box-shadow: 0 0 15px white, 0 0 25px white;
+    }
   </style>
 </head>
 <body>
@@ -169,6 +166,13 @@ body {
     <input id="taskDate" type="date" />
     <button id="addTask">Add Task</button>
     <ul id="taskList"></ul>
+  </div>
+
+  <!-- BOTTOM BUTTON BAR -->
+  <div id="bottomBar">
+    <button class="bottomBtn">Button 1</button>
+    <button class="bottomBtn">Button 2</button>
+    <button class="bottomBtn">Button 3</button>
   </div>
 
   <script src="app.js"></script>

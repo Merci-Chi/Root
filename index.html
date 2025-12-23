@@ -152,11 +152,12 @@
       outline: none;
     }
 
-    /* Scheduled Task Input Fields and Add Task Button */
-    #taskInput, #taskDate, #addTask {
-  width: 100%; /* Full width to match the container */
+/* Scheduled Task Input Fields and Add Task Button */
+#taskInput, #taskDate, #addTask {
+  width: auto; /* Set width to auto so it doesn't take up the full container */
+  max-width: 100%; /* Ensure it won't overflow */
   padding: 12px; /* Same padding as the "Add Task" button */
-  margin-bottom: 12px; /* Space between elements */
+  margin-bottom: 10px; /* Space between elements */
   background: black;
   color: white;
   border: 1px solid white;
@@ -165,6 +166,7 @@
   box-sizing: border-box; /* Include padding in width/height */
   box-shadow: 0 0 8px white; /* Subtle white shadow */
 }
+
 
     /* Ensure Add Task Button has same size as inputs */
     #addTask {

@@ -219,6 +219,13 @@
       box-shadow: 0 0 8px white;
     }
 
+    input#taskDate {
+      value: "";
+      onfocus="this.placeholder = ''";
+      onblur="this.placeholder = 'Select a Date'";
+      placeholder="Select a Date";
+    }
+
     #addTask {
       width: 100%;
       padding: 12px;
@@ -254,7 +261,7 @@
   <h2>Scheduled Tasks</h2>
   <div class="container">
     <input id="taskInput" placeholder="Task description" />
-    <input id="taskDate" type="date" style="padding:5px 10px" placeholder="Select a Date" />
+    <input id="taskDate" type="date" style="padding:5px 10px" value="" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Select a Date'" placeholder="Select a Date" />
     <button id="addTask">Add Task</button>
     <ul id="taskList"></ul>
   </div>
@@ -272,17 +279,6 @@
     </a>
   </div>
 
-  <script>
-    // JavaScript to set the current date as the default value in the date input field
-    document.addEventListener("DOMContentLoaded", function() {
-      var today = new Date();
-      var day = ("0" + today.getDate()).slice(-2);
-      var month = ("0" + (today.getMonth() + 1)).slice(-2); // Months are 0-based
-      var year = today.getFullYear();
-      var currentDate = year + "-" + month + "-" + day;
-
-      document.getElementById("taskDate").value = currentDate;
-    });
-  </script>
+  <script src="app.js"></script>
 </body>
 </html>

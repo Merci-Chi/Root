@@ -14,7 +14,7 @@
 <div class="overlay"></div>
   
   <style>
-    /* Black transparent overlay above the background but below content */
+   /* Black transparent overlay above the background but below content */
 .overlay {
   content: '';
   position: absolute;
@@ -23,14 +23,16 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.7); /* Black overlay with 70% opacity */
-  z-index: 0; /* Ensure the overlay stays beneath the content */
+  z-index: 1; /* Keep this value low so the overlay stays underneath the content */
 }
+
 
     html, body {
       height: 100%;
       margin: 0;
       padding: 0;
       background: black;
+        z-index: 1;
     }
 
     body {
@@ -44,11 +46,12 @@
       align-items: center;
       padding: 20px;
       padding-bottom: 600px;
+        z-index: 1;
     }
 
     h1 {
       font-family: 'Luckiest Guy', cursive;
-      margin-bottom: 10px;
+      margin-bottom: 10px;  z-index: 1;
     }
 
     h2 {
@@ -56,6 +59,7 @@
       font-size: 1.3rem;
       margin-top: 10px;
       margin-bottom: 5px;
+      z-index: 1;
     }
 
     #todayTasks {
@@ -67,12 +71,14 @@
       max-width: 500px;
       margin-bottom: 20px;
       border-radius: 8px;
+      z-index: 1;
     }
 
     #todayTasks li {
       font-size: 1.25rem;
       line-height: 1.6;
       cursor: pointer;
+      z-index: 1;
     }
 
     .container {
@@ -82,12 +88,14 @@
       width: 90%;
       max-width: 500px;
       margin-bottom: 20px;
+      z-index: 1;
     }
 
     .editable {
       min-height: 180px;
       outline: none;
       white-space: pre-wrap;
+      z-index: 1;
     }
 
     input, button {
@@ -100,20 +108,24 @@
       font-family: 'Architects Daughter', cursive;
       font-size: 1rem;
       box-shadow: 0 0 8px white;
+      z-index: 1;
     }
 
     button {
       cursor: pointer;
+      z-index: 1;
     }
 
     ul {
       list-style: none;
       padding-left: 0;
+      z-index: 1;
     }
 
     li.done {
       text-decoration: line-through;
       opacity: 0.6;
+      z-index: 1;
     }
 
     #noteContainer {
@@ -124,6 +136,7 @@
       width: 90%;
       max-width: 500px;
       margin-bottom: 20px;
+      z-index: 1;
     }
 
     #bottomBar {
@@ -139,6 +152,7 @@
       border: 2px solid rgba(255, 255, 255, 0.3);
       box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
       z-index: 1000;
+      
     }
 
     .bottomBtn {
@@ -196,15 +210,18 @@
       display: inline-block;
       transition: all 0.3s ease;
       margin-top: 15px;
+      z-index: 1;
     }
 
     #saveNoteBtn:hover {
       background-color: rgba(0, 0, 0, 1);
       box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+      z-index: 1;
     }
 
     #saveNoteBtn:focus {
       outline: none;
+      z-index: 1;
     }
 
     #taskInput {
@@ -219,6 +236,7 @@
       box-sizing: border-box;
       box-shadow: 0 0 8px white;
       text-align: center;
+      z-index: 1;
     }
 
     #taskDate {
@@ -232,6 +250,7 @@
       font-size: 1rem;
       box-sizing: border-box;
       box-shadow: 0 0 8px white;
+      z-index: 1;
     }
 <label for="taskDate">Select Task Date: </label>
 <input id="taskDate" type="date" />

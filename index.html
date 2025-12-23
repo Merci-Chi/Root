@@ -191,6 +191,26 @@
     #saveNoteBtn:focus {
       outline: none;
     }
+<script>
+  // Get the save button and note container
+  const saveNoteBtn = document.getElementById('saveNoteBtn');
+  const noteContainer = document.getElementById('noteContainer');
+
+  // Load the saved note from localStorage when the page loads
+  window.onload = () => {
+    const savedNote = localStorage.getItem('note');
+    if (savedNote) {
+      noteContainer.innerHTML = savedNote;  // Set the saved note to the editable div
+    }
+  };
+
+  // Save the note to localStorage when the save button is clicked
+  saveNoteBtn.addEventListener('click', () => {
+    const noteContent = noteContainer.innerHTML;
+    localStorage.setItem('note', noteContent);  // Save the note in localStorage
+    alert("Note saved!");  // Optional: Display a confirmation message
+  });
+</script>
 
     #taskInput {
       width: 100%;

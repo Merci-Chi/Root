@@ -18,19 +18,18 @@
       background: black; /* fallback */
     }
 
-   body {
-  background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, rgba(0,0,0,1) 100%),
-              url('Forest.JPG') no-repeat center center fixed;
-  background-size: cover;
-  color: white;
-  font-family: 'Architects Daughter', cursive;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  padding-bottom: 600px; /* Increase this value to add extra space at the bottom */
-}
-
+    body {
+      background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, rgba(0,0,0,1) 100%),
+                  url('Forest.JPG') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      font-family: 'Architects Daughter', cursive;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      padding-bottom: 600px; /* Increase this value to add extra space at the bottom */
+    }
 
     h1 {
       font-family: 'Luckiest Guy', cursive;
@@ -44,18 +43,17 @@
       margin-bottom: 5px;
     }
 
-   /* Today's Tasks Container with Transparent Black Background */
-#todayTasks {
-  background: rgba(0, 0, 0, 0.5);
-  border: 2px solid white;
-  box-shadow: 0 0 15px white;
-  padding: 20px;
-  width: 90%;
-  max-width: 500px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-}
-
+    /* Today's Tasks Container with Transparent Black Background */
+    #todayTasks {
+      background: rgba(0, 0, 0, 0.5);
+      border: 2px solid white;
+      box-shadow: 0 0 15px white;
+      padding: 20px;
+      width: 90%;
+      max-width: 500px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
 
     #todayTasks li {
       font-size: 1.25rem;
@@ -160,51 +158,62 @@
       outline: none;
     }
 
-/* Task Description Input */
-#taskInput {
-  width: 100%; /* Adjust the width as needed */
-  padding: 12px;
-  margin-bottom: 10px;
-  background: black;
-  align-items: center;
-  color: white;
-  border: 1px solid white;
-  font-family: 'Architects Daughter', cursive;
-  font-size: 1rem;
-  box-sizing: border-box;
-  box-shadow: 0 0 8px white;
-}
+    /* Style the Task Counter (0/0) to match Save button style */
+    #taskCounter {
+      padding: 5px 15px; /* Match the padding of the Save button */
+      font-family: 'Architects Daughter', cursive; /* Match the font */
+      font-size: 1.2rem; /* Slightly bigger to be readable */
+      color: white;
+      background: rgba(0, 0, 0, 0.8); /* Black background with slight transparency */
+      border: 2px solid white; /* White border like the Save button */
+      border-radius: 20px; /* Rounded edges like the button */
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* Subtle white shadow */
+      text-align: center;
+      display: inline-block;
+    }
 
-/* Task Date Input */
-#taskDate {
-  width: 93%; /* Adjust this width value as needed */
-  padding: 12px;
-  margin-bottom: 10px;
-  background: black;
-  color: white;
-  border: 1px solid white;
-  font-family: 'Architects Daughter', cursive;
-  font-size: 1rem;
-  box-sizing: border-box;
-  box-shadow: 0 0 8px white;
-}
+    /* Task Description Input */
+    #taskInput {
+      width: 100%; /* Adjust the width as needed */
+      padding: 12px;
+      margin-bottom: 10px;
+      background: black;
+      color: white;
+      border: 1px solid white;
+      font-family: 'Architects Daughter', cursive;
+      font-size: 1rem;
+      box-sizing: border-box;
+      box-shadow: 0 0 8px white;
+    }
 
-/* Add Task Button */
-#addTask {
-  width: 50%; /* Adjust this width value as needed */
-  padding: 12px;
-  margin-bottom: 10px;
-  background: black;
-  color: white;
-  border: 1px solid white;
-  font-family: 'Architects Daughter', cursive;
-  font-size: 1rem;
-  cursor: pointer;
-  box-sizing: border-box;
-  box-shadow: 0 0 8px white;
-}
+    /* Task Date Input */
+    #taskDate {
+      width: 93%; /* Adjust this width value as needed */
+      padding: 12px;
+      margin-bottom: 10px;
+      background: black;
+      color: white;
+      border: 1px solid white;
+      font-family: 'Architects Daughter', cursive;
+      font-size: 1rem;
+      box-sizing: border-box;
+      box-shadow: 0 0 8px white;
+    }
 
-
+    /* Add Task Button */
+    #addTask {
+      width: 50%; /* Adjust this width value as needed */
+      padding: 12px;
+      margin-bottom: 10px;
+      background: black;
+      color: white;
+      border: 1px solid white;
+      font-family: 'Architects Daughter', cursive;
+      font-size: 1rem;
+      cursor: pointer;
+      box-sizing: border-box;
+      box-shadow: 0 0 8px white;
+    }
 
     /* Ensure Add Task Button has same size as inputs */
     #addTask {
@@ -251,19 +260,18 @@
     <ul id="taskList"></ul>
   </div>
 
- <!-- BOTTOM BUTTON BAR -->
-<div id="bottomBar">
-  <a href="index.html">
-    <button class="bottomBtn" style="background-image: url('Tracker.PNG');"></button> <!-- Button 1 with icon -->
-  </a>
-  <a href="settings.html">
-    <button class="bottomBtn" style="background-image: url('Settings.PNG');"></button> <!-- Button 2 with icon -->
-  </a>
-  <a href="account.html">
-    <button class="bottomBtn" style="background-image: url('Button.PNG');"></button> <!-- Button 3 with icon -->
-  </a>
-</div>
-
+  <!-- BOTTOM BUTTON BAR -->
+  <div id="bottomBar">
+    <a href="index.html">
+      <button class="bottomBtn" style="background-image: url('Tracker.PNG');"></button> <!-- Button 1 with icon -->
+    </a>
+    <a href="settings.html">
+      <button class="bottomBtn" style="background-image: url('Settings.PNG');"></button> <!-- Button 2 with icon -->
+    </a>
+    <a href="account.html">
+      <button class="bottomBtn" style="background-image: url('Button.PNG');"></button> <!-- Button 3 with icon -->
+    </a>
+  </div>
 
   <script src="app.js"></script>
 </body>

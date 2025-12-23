@@ -103,24 +103,24 @@
   width: 100%;
   display: flex;
   justify-content: center; /* Center the buttons horizontally */
-  padding: 8px 0;  /* Reduced padding for shorter bar */
+  padding: 8px 20px;  /* Reduced padding for shorter bar */
   background: rgba(0,0,0,0.8);
   z-index: 1000;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 25px 25px 0 0; /* Curved top corners */
+  border-radius: 40px; /* Oval container */
 }
 
-/* Styling the buttons with oval shape */
+/* Styling the buttons as circles */
 .bottomBtn {
-  width: 120px;  /* Wider width for oval effect */
-  height: 40px; /* Slightly taller height */
-  border-radius: 25px;  /* Oval corners */
-  padding: 8px;
-  margin: 0 5px; /* Decreased space between buttons */
+  width: 60px;  /* Circular width */
+  height: 60px; /* Circular height */
+  border-radius: 50%;  /* Makes the buttons circular */
+  padding: 12px;
+  margin: 0 10px; /* Reduced space between buttons */
   border: 2px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.1);
   color: white;
-  font-family: 'Architects Daughter', cursive;
+  font-family: 'Architects Daughter', cursive; /* Set font to Architects Daughter */
   font-size: 2rem;  /* Larger text size */
   transition: all 0.3s ease;
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);

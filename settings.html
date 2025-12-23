@@ -11,20 +11,80 @@
   <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Luckiest+Guy&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      background-color: darkgrey;
-      color: white;
-      font-family: 'Architects Daughter', cursive;
+    html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
+      background: black; /* fallback */
+    }
+
+    body {
+      background: url('Forest.JPG') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      font-family: 'Architects Daughter', cursive;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      padding-bottom: 600px; /* Add padding to adjust the bottom space */
+
+      position: relative; /* Needed to position the overlay */
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+      z-index: -1; /* Ensure overlay is behind other content */
     }
 
     h1 {
-      text-align: center;
-      margin-top: 50px;
+      font-family: 'Luckiest Guy', cursive;
+      margin-bottom: 10px;
     }
 
-    /* BOTTOM BUTTON BAR */
+    h2 {
+      font-family: 'Luckiest Guy', cursive;
+      font-size: 1.3rem;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+
+    /* Container for the settings content */
+    .settings-container {
+      border: 2px solid white;
+      box-shadow: 0 0 15px white;
+      padding: 20px;
+      width: 90%;
+      max-width: 500px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.7); /* Transparent black background */
+    }
+
+    /* Style for inputs */
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 10px;
+      background: black;
+      color: white;
+      border: 1px solid white;
+      font-family: 'Architects Daughter', cursive;
+      font-size: 1rem; /* Same font size for inputs and button */
+      box-shadow: 0 0 8px white;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    /* Bottom Bar Style */
     #bottomBar {
       position: fixed;
       bottom: 0;
@@ -68,17 +128,33 @@
     .bottomBtn:focus {
       outline: none;
     }
+
   </style>
 </head>
 <body>
 
-  <h1>Settings Page</h1>
-  <p style="text-align: center; font-size: 1.2rem;">This is the placeholder for your settings page.</p>
+  <!-- SETTINGS HEADER -->
+  <h1>Settings</h1>
+
+  <!-- SETTINGS FORM -->
+  <div class="settings-container">
+    <h2>Account Settings</h2>
+    <label for="username">Username</label>
+    <input id="username" type="text" placeholder="Enter username" />
+    
+    <label for="email">Email</label>
+    <input id="email" type="email" placeholder="Enter email" />
+    
+    <label for="password">Password</label>
+    <input id="password" type="password" placeholder="Enter password" />
+    
+    <button>Save Settings</button>
+  </div>
 
   <!-- BOTTOM BUTTON BAR -->
   <div id="bottomBar">
     <a href="index.html">
-      <button class="bottomBtn" style="background-image: url('Tracking.PNG');"></button> <!-- Button 1 with icon -->
+      <button class="bottomBtn" style="background-image: url('Tracker.PNG');"></button> <!-- Button 1 with icon -->
     </a>
     <a href="settings.html">
       <button class="bottomBtn" style="background-image: url('Settings.PNG');"></button> <!-- Button 2 with icon -->
@@ -88,5 +164,6 @@
     </a>
   </div>
 
+  <script src="app.js"></script>
 </body>
 </html>

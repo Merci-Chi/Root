@@ -107,21 +107,21 @@
   background: rgba(0,0,0,0.8);
   z-index: 1000;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 30px; /* Oval container */
+  border-radius: 40px; /* Oval container */
 }
 
-/* Styling the buttons as circles */
+/* Styling the buttons with PNG icons */
 .bottomBtn {
   width: 60px;  /* Circular width */
   height: 60px; /* Circular height */
   border-radius: 50%;  /* Makes the buttons circular */
-  padding: 12px;
   margin: 0 10px; /* Reduced space between buttons */
+  padding: 12px;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  font-family: 'Architects Daughter', cursive; /* Set font to Architects Daughter */
-  font-size: 2rem;  /* Larger text size */
+  background-color: rgba(255, 255, 255, 0.1); /* Slight white background for button */
+  background-image: url('icon.png');  /* Your transparent PNG image */
+  background-size: 40px 40px; /* Scale PNG icon to fit the button */
+  background-position: center; /* Center the image inside the button */
   transition: all 0.3s ease;
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
   cursor: pointer;
@@ -131,13 +131,14 @@
 }
 
 .bottomBtn:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.2);  /* Light background on hover */
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .bottomBtn:focus {
   outline: none;
 }
+
   </style>
 </head>
 <body>

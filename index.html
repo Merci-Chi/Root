@@ -18,19 +18,18 @@
       background: black; /* fallback */
     }
 
-   body {
-  background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, rgba(0,0,0,1) 100%),
-              url('Forest.JPG') no-repeat center center fixed;
-  background-size: cover;
-  color: white;
-  font-family: 'Architects Daughter', cursive;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  padding-bottom: 60px; /* Adjust space for the fixed bottom bar */
-}
-
+    body {
+      background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, rgba(0,0,0,1) 100%),
+                  url('Forest.JPG') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      font-family: 'Architects Daughter', cursive;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      padding-bottom: 60px; /* Added space for the bottom bar */
+    }
 
     h1 {
       font-family: 'Luckiest Guy', cursive;
@@ -96,44 +95,40 @@
       opacity: 0.6;
     }
 
-    /* Counter bubble next to Today’s Tasks */
-    #taskCounter {
-      font-size: 0.8rem;
-      background: white;
-      color: black;
-      padding: 2px 8px;
-      border-radius: 12px;
-      margin-left: 10px;
+    /* Bottom Bar Style */
+    #bottomBar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      padding: 15px 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 1000;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    /* Bottom bar buttons */
-   #bottomBar {
-  position: fixed;
-  bottom: 20px;  /* Added more space from the bottom */
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  padding: 20px 0;  /* Increased padding for more space */
-  background: rgba(0,0,0,0.5);
-  z-index: 1000;
-}
-
-
     .bottomBtn {
-      padding: 10px 20px;
-      border: 2px solid white;
-      background: black;
+      padding: 12px 20px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
       color: white;
       font-family: 'Architects Daughter', cursive;
+      font-size: 1rem;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
       cursor: pointer;
-      box-shadow: 0 0 10px white;
-      border-radius: 8px;
-      transition: 0.2s;
     }
 
     .bottomBtn:hover {
-      box-shadow: 0 0 15px white, 0 0 25px white;
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+    }
+
+    .bottomBtn:focus {
+      outline: none;
     }
   </style>
 </head>

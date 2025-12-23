@@ -72,12 +72,13 @@
 
     input, button {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       margin-bottom: 10px;
       background: black;
       color: white;
       border: 1px solid white;
       font-family: 'Architects Daughter', cursive;
+      font-size: 1rem; /* Same font size for inputs and button */
       box-shadow: 0 0 8px white;
     }
 
@@ -95,51 +96,70 @@
       opacity: 0.6;
     }
 
-   /* Bottom Bar Style */
-#bottomBar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;  /* Full width */
-  display: flex;
-  justify-content: center; /* Center the buttons horizontally */
-  padding: 15px 0;  /* Added padding for better spacing */
-  background-color: rgba(0, 0, 0, 0.8); /* Apple-style black background */
-  border-radius: 40px; /* Oval container */
-  border: 2px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.5); /* Subtle white shadow */
-  z-index: 1000;
-}
+    /* Bottom Bar Style */
+    #bottomBar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;  /* Full width */
+      display: flex;
+      justify-content: center; /* Center the buttons horizontally */
+      padding: 15px 0;  /* Added padding for better spacing */
+      background-color: rgba(0, 0, 0, 0.8); /* Apple-style black background */
+      border-radius: 40px; /* Oval container */
+      border: 2px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.5); /* Subtle white shadow */
+      z-index: 1000;
+    }
 
-/* Styling the buttons as circles with icon */
-.bottomBtn {
-  width: 60px;  /* Circular width */
-  height: 60px; /* Circular height */
-  border-radius: 50%;  /* Makes the buttons circular */
-  margin: 0 10px; /* Reduced space between buttons */
-  padding: 12px;
-  border: 2px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
-  background-color: rgba(0, 0, 0, 0.8); /* Apple-style black background */
-  background-image: url('Button.PNG'); /* Replace button with PNG icon */
-  background-size: 50px 50px; /* Adjust the icon size inside the button */
-  background-position: center; /* Center the icon in the button */
-  background-repeat: no-repeat; /* Ensure the icon doesn't repeat */
-  transition: all 0.3s ease;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3); /* Subtle shadow */
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    /* Styling the buttons as circles with icon */
+    .bottomBtn {
+      width: 60px;  /* Circular width */
+      height: 60px; /* Circular height */
+      border-radius: 50%;  /* Makes the buttons circular */
+      margin: 0 10px; /* Reduced space between buttons */
+      padding: 12px;
+      border: 2px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+      background-color: rgba(0, 0, 0, 0.8); /* Apple-style black background */
+      background-image: url('Button.PNG'); /* Replace button with PNG icon */
+      background-size: 50px 50px; /* Adjust the icon size inside the button */
+      background-position: center; /* Center the icon in the button */
+      background-repeat: no-repeat; /* Ensure the icon doesn't repeat */
+      transition: all 0.3s ease;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.3); /* Subtle shadow */
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-.bottomBtn:hover {
-  background-color: rgba(0, 0, 0, 1);  /* Darker background on hover */
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.6); /* Stronger white shadow on hover */
-}
+    .bottomBtn:hover {
+      background-color: rgba(0, 0, 0, 1);  /* Darker background on hover */
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.6); /* Stronger white shadow on hover */
+    }
 
-.bottomBtn:focus {
-  outline: none;
-}
+    .bottomBtn:focus {
+      outline: none;
+    }
+
+    /* Scheduled Task Input Fields and Add Task Button */
+    #taskInput, #taskDate, #addTask {
+      width: 100%; /* Full width to match the container */
+      padding: 12px; /* Consistent padding */
+      margin-bottom: 10px; /* Space between elements */
+      background: black;
+      color: white;
+      border: 1px solid white;
+      font-family: 'Architects Daughter', cursive;
+      font-size: 1rem; /* Same font size as "Add Task" */
+      box-shadow: 0 0 8px white;
+    }
+
+    /* Ensure Add Task Button has same size as inputs */
+    #addTask {
+      font-size: 1rem; /* Consistent font size */
+      cursor: pointer;
+    }
 
   </style>
 </head>

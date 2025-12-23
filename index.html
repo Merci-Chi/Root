@@ -282,5 +282,31 @@
   </div>
 
   <script src="app.js"></script>
+  <script>
+  // Function to load the saved note from localStorage
+  function loadNote() {
+    const savedNote = localStorage.getItem('dailyNote');
+    if (savedNote) {
+      document.getElementById('noteContainer').innerText = savedNote;
+    }
+  }
+
+  // Function to save the note to localStorage
+  function saveNote() {
+    const noteContent = document.getElementById('noteContainer').innerText;
+    localStorage.setItem('dailyNote', noteContent);
+  }
+
+  // Event listener for saving the note
+  document.getElementById('saveNoteBtn').addEventListener('click', saveNote);
+
+  // Load the saved note when the page loads
+  window.onload = loadNote;
+
+  // Get today's date in YYYY-MM-DD format and set the date in the input field
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('taskDate').placeholder = today;
+</script>
+
 </body>
 </html>

@@ -8,19 +8,20 @@ currentDateEl.textContent = today.toLocaleDateString('en-US', {
   day: 'numeric'
 });
 
-// ---------- NOTES (DAILY RESET) ----------
+// ---------- NOTES (PERSISTENT NOTES) ----------
 const noteContainer = document.getElementById('noteContainer');
 const saveNoteBtn = document.getElementById('saveNoteBtn');
 
 // Get today's date key (e.g., "Thu Dec 22 2025")
-const todayKey = today.toDateString(); // Use today's date as the key
+const todayKey = today.toDateString();
 
 // Retrieve saved note from localStorage, if any
 let savedNote = JSON.parse(localStorage.getItem('dailyNote')) || {};
 
-// If the saved note doesn't belong to today, reset it to an empty note
-if (savedNote.date !== todayKey) {
-  savedNote = { date: todayKey, content: '' }; // Initialize an empty note for the new day
+// Do not reset the note every day, keep the same note over multiple days
+// The note only gets updated or cleared manually, not automatically
+if (!savedNote.content) {
+  savedNote = { date: todayKey, content: '' };
 }
 
 // Load the saved note content into the note container
@@ -39,10 +40,10 @@ noteContainer.addEventListener('input', () => {
 saveNoteBtn.addEventListener('click', () => {
   // Save the content when the user clicks the Save button
   savedNote.content = noteContainer.textContent;
-  savedNote.date = todayKey; // Ensure the date is updated for today
-  localStorage.setItem('dailyNote', JSON.stringify(savedNote)); // Save the note to localStorage
+  savedNote.date = todayKey; // Keep the current date for reference
+  localStorage.setItem('dailyNote', JSON.stringify(savedNote));
 
-  alert("Notes saved!"); // Notify the user that the notes were saved
+  alert("Notes saved!");
 });
 
 // ---------- TASKS ----------

@@ -4,60 +4,295 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Daily Notes</title>
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Luckiest+Guy&display=swap" rel="stylesheet">
+
   <style>
-    html, body { height: 100%; margin: 0; padding: 0; background: black; font-family: 'Architects Daughter', cursive; display: flex; flex-direction: column; align-items: center; padding: 20px; color: white; }
-    body { background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, rgba(0,0,0,1) 100%), url('Forest.JPG') no-repeat center center fixed; background-size: cover; padding-bottom: 600px; }
-    h1, h2 { font-family: 'Luckiest Guy', cursive; }
-    h1 { margin-bottom: 10px; }
-    h2 { font-size: 1.3rem; margin: 10px 0 5px; }
-    .container, #todayTasks, #noteContainer { background: rgba(0, 0, 0, 0.5); border: 2px solid white; box-shadow: 0 0 15px white; padding: 20px; width: 90%; max-width: 500px; margin-bottom: 20px; border-radius: 8px; }
-    .editable { min-height: 180px; outline: none; white-space: pre-wrap; }
-    input, button { width: 100%; padding: 12px; margin-bottom: 10px; background: black; color: white; border: 1px solid white; font-size: 1rem; box-shadow: 0 0 8px white; }
-    button { cursor: pointer; }
-    ul { list-style: none; padding-left: 0; }
-    li.done { text-decoration: line-through; opacity: 0.6; }
-    #bottomBar { position: fixed; bottom: 0; left: 0; width: 100%; display: flex; justify-content: center; padding: 15px 0; background-color: rgba(0, 0, 0, 0.8); border-radius: 40px; box-shadow: 0 0 12px rgba(255, 255, 255, 0.5); z-index: 1000; }
-    .bottomBtn { width: 60px; height: 60px; border-radius: 50%; margin: 0 10px; padding: 12px; border: 2px solid rgba(255, 255, 255, 0.3); background-color: rgba(0, 0, 0, 0.8); background-size: 50px 50px; transition: all 0.3s ease; box-shadow: 0 0 8px rgba(255, 255, 255, 0.3); cursor: pointer; display: flex; justify-content: center; align-items: center; }
-    .bottomBtn:hover { background-color: rgba(0, 0, 0, 1); box-shadow: 0 0 12px rgba(255, 255, 255, 0.6); }
-    .bottomBtn:focus { outline: none; }
-    #taskCounter, #saveNoteBtn { font-family: 'Architects Daughter', cursive; font-size: 1.2rem; color: white; background: rgba(0, 0, 0, 0.8); border: 2px solid white; border-radius: 20px; box-shadow: 0 0 8px rgba(255, 255, 255, 0.5); text-align: center; display: inline-block; cursor: pointer; }
-    #taskCounter { padding: 5px 15px; }
-    #saveNoteBtn { margin-top: 15px; transition: all 0.3s ease; }
-    #saveNoteBtn:hover { background-color: rgba(0, 0, 0, 1); box-shadow: 0 0 12px rgba(255, 255, 255, 0.6); }
-    #saveNoteBtn:focus { outline: none; }
-    #taskInput, #taskDate { width: 100%; padding: 12px; margin-bottom: 10px; background: black; color: white; border: 1px solid white; font-size: 1rem; box-sizing: border-box; box-shadow: 0 0 8px white; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: black;
+    }
+
+    body {
+      background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, rgba(0,0,0,1) 100%),
+                  url('Forest.JPG') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      font-family: 'Architects Daughter', cursive;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      padding-bottom: 600px;
+    }
+
+    h1 {
+      font-family: 'Luckiest Guy', cursive;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-family: 'Luckiest Guy', cursive;
+      font-size: 1.3rem;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+
+    #todayTasks {
+      background: rgba(0, 0, 0, 0.5);
+      border: 2px solid white;
+      box-shadow: 0 0 15px white;
+      padding: 20px;
+      width: 90%;
+      max-width: 500px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+
+    #todayTasks li {
+      font-size: 1.25rem;
+      line-height: 1.6;
+      cursor: pointer;
+    }
+
+    .container {
+      border: 2px solid white;
+      box-shadow: 0 0 15px white;
+      padding: 20px;
+      width: 90%;
+      max-width: 500px;
+      margin-bottom: 20px;
+    }
+
+    .editable {
+      min-height: 180px;
+      outline: none;
+      white-space: pre-wrap;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 10px;
+      background: black;
+      color: white;
+      border: 1px solid white;
+      font-family: 'Architects Daughter', cursive;
+      font-size: 1rem;
+      box-shadow: 0 0 8px white;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li.done {
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
+
+    #noteContainer {
+      background: rgba(0, 0, 0, 0.5);
+      border: 2px solid white;
+      box-shadow: 0 0 15px white;
+      padding: 20px;
+      width: 90%;
+      max-width: 500px;
+      margin-bottom: 20px;
+    }
+
+    #bottomBar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 15px 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 40px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+      z-index: 1000;
+    }
+
+    .bottomBtn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin: 0 10px;
+      padding: 12px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      background-color: rgba(0, 0, 0, 0.8);
+      background-size: 50px 50px;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .bottomBtn:hover {
+      background-color: rgba(0, 0, 0, 1);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+    }
+
+    .bottomBtn:focus {
+      outline: none;
+    }
+
+    #taskCounter {
+      padding: 5px 15px;
+      font-family: 'Architects Daughter', cursive;
+      font-size: 1.2rem;
+      color: white;
+      background: rgba(0, 0, 0, 0.8);
+      border: 2px solid white;
+      border-radius: 20px;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+      text-align: center;
+      display: inline-block;
+    }
+
+    #saveNoteBtn {
+      padding: 5px 15px;
+      font-family: 'Architects Daughter', cursive;
+      font-size: 1.2rem;
+      color: white;
+      background: rgba(0, 0, 0, 0.8);
+      border: 2px solid white;
+      border-radius: 20px;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+      text-align: center;
+      cursor: pointer;
+      display: inline-block;
+      transition: all 0.3s ease;
+      margin-top: 15px;
+    }
+
+    #saveNoteBtn:hover {
+      background-color: rgba(0, 0, 0, 1);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+    }
+
+    #saveNoteBtn:focus {
+      outline: none;
+    }
+
+    #taskInput {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 10px;
+      background: black;
+      color: white;
+      border: 1px solid white;
+      font-family: 'Architects Daughter', cursive;
+      font-size: 1rem;
+      box-sizing: border-box;
+      box-shadow: 0 0 8px white;
+      text-align: center;
+    }
+
+    #taskDate {
+      width: 93%;
+      padding: 12px;
+      margin-bottom: 10px;
+      background: black;
+      color: white;
+      border: 1px solid white;
+      font-family: 'Architects Daughter', cursive;
+      font-size: 1rem;
+      box-sizing: border-box;
+      box-shadow: 0 0 8px white;
+    }
+
+   <input id="taskDate" type="date" style="padding:5px 10px" value="" placeholder="" />
+<script>
+  // Get today's date in YYYY-MM-DD format
+  const today = new Date().toISOString().split('T')[0];
+
+  // Set the placeholder to today's date
+  document.getElementById('taskDate').placeholder = today;
+
+  // Load saved note from localStorage (if exists)
+  const savedNote = localStorage.getItem('note');
+  if (savedNote) {
+    document.getElementById('noteContainer').innerText = savedNote;
+  }
+
+  // Save note to localStorage when the 'Save' button is clicked
+  document.getElementById('saveNoteBtn').addEventListener('click', function() {
+    const noteContent = document.getElementById('noteContainer').innerText;
+    localStorage.setItem('note', noteContent);
+  });
+</script>
+
+    #addTask {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 10px;
+      background: black;
+      color: white;
+      border: 1px solid white;
+      font-family: 'Architects Daughter', cursive;
+      font-size: 1rem;
+      cursor: pointer;
+      box-sizing: border-box;
+      box-shadow: 0 0 8px white;
+    }
   </style>
 </head>
 <body>
+
+  <!-- DATE HEADER -->
   <h1 id="currentDate"></h1>
+
+  <!-- TODAY'S TASKS -->
   <h2>Today’s Tasks <span id="taskCounter">0/0</span></h2>
   <ul id="todayTasks"></ul>
+
+  <!-- NOTES HEADER + SAVE BUTTON -->
   <div style="display:flex; align-items:center; margin-bottom:10px;">
     <h1 style="margin-right:10px;">NOTES</h1>
     <button id="saveNoteBtn">Save</button>
   </div>
   <div id="noteContainer" class="container editable" contenteditable="true"></div>
+
+  <!-- SCHEDULED TASKS -->
   <h2>Scheduled Tasks</h2>
   <div class="container">
     <input id="taskInput" placeholder="Task description" />
-    <input id="taskDate" type="date" value="" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Select a Date'" placeholder="Select a Date" />
+    <input id="taskDate" type="date" style="padding:5px 10px" value="" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Select a Date'" placeholder="Select a Date" />
     <button id="addTask">Add Task</button>
     <ul id="taskList"></ul>
   </div>
+
+  <!-- BOTTOM BUTTON BAR -->
   <div id="bottomBar">
-    <a href="index.html"><button class="bottomBtn" style="background-image: url('Tracker.PNG');"></button></a>
-    <a href="settings.html"><button class="bottomBtn" style="background-image: url('Settings.PNG');"></button></a>
-    <a href="account.html"><button class="bottomBtn" style="background-image: url('Button.PNG');"></button></a>
+    <a href="index.html">
+      <button class="bottomBtn" style="background-image: url('Tracker.PNG');"></button>
+    </a>
+    <a href="settings.html">
+      <button class="bottomBtn" style="background-image: url('Settings.PNG');"></button>
+    </a>
+    <a href="account.html">
+      <button class="bottomBtn" style="background-image: url('Button.PNG');"></button>
+    </a>
   </div>
-  <script>
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('taskDate').placeholder = today;
-    const savedNote = localStorage.getItem('note');
-    if (savedNote) document.getElementById('noteContainer').innerText = savedNote;
-    document.getElementById('saveNoteBtn').addEventListener('click', () => localStorage.setItem('note', document.getElementById('noteContainer').innerText));
-  </script>
+
+  <script src="app.js"></script>
 </body>
 </html>

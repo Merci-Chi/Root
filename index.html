@@ -219,18 +219,6 @@
       box-shadow: 0 0 8px white;
     }
 
-<input id="taskDate" type="date" style="padding:5px 10px" value="" placeholder="" onfocus="this.placeholder = ''" onblur="this.placeholder = this.value === '' ? 'Select a Date' : this.value" />
-
-<script>
-  // Get today's date in YYYY-MM-DD format
-  const today = new Date().toISOString().split('T')[0];
-
-  // Set the input value to today's date
-  document.getElementById('taskDate').value = today;
-
-  // Set the placeholder to today's date
-  document.getElementById('taskDate').placeholder = today;
-</script>
 
     #addTask {
       width: 100%;

@@ -159,3 +159,68 @@ taskDate.value = todayISO;  // This sets the date picker to today's date
 
 // Initial render
 renderTasks();
+
+const habitBody = document.getElementById('habitBody');
+const addHabitBtn = document.getElementById('addHabitBtn');
+const newHabit = document.getElementById('newHabit');
+
+// Load habits from localStorage
+let habits = JSON.parse(localStorage.getItem('habits')) || [];
+
+// Render the table
+function renderHabits() {
+  habitBody.innerHTML = '';
+  const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+  habits.forEach((habit, index) => {
+    const tr = document.createElement('tr');
+    
+    // Habit name
+    const tdName = document.createElement('td');
+    tdName.textContent = habit.name;
+    tr.appendChild(tdName);
+
+    // Days
+    let streak = 0;
+    weekDays.forEach((day, i) => {
+      const td = document.createElement('td');
+      td.dataset.habitIndex = index;
+      td.dataset.dayIndex = i;
+
+      if (habit.days[i]) {
+        td.classList.add('completed');
+        streak++;
+      }
+
+      td.addEventListener('click', () => {
+        habit.days[i] = !habit.days[i];
+        localStorage.setItem('habits', JSON.stringify(habits));
+        renderHabits();
+      });
+
+      tr.appendChild(td);
+    });
+
+    // Streak
+    const tdStreak = document.createElement('td');
+    tdStreak.textContent = streak;
+    tr.appendChild(tdStreak);
+
+    habitBody.appendChild(tr);
+  });
+}
+
+// Add new habit
+addHabitBtn.addEventListener('click', () => {
+  const name = newHabit.value.trim();
+  if (!name) return;
+
+  habits.push({ name, days: [false, false, false, false, false, false, false] });
+  localStorage.setItem('habits', JSON.stringify(habits));
+  newHabit.value = '';
+  renderHabits();
+});
+
+// Initial render
+renderHabits();
+

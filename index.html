@@ -160,16 +160,41 @@
 
     /* Style the Task Counter (0/0) to match Save button style */
     #taskCounter {
-      padding: 5px 15px; /* Match the padding of the Save button */
-      font-family: 'Architects Daughter', cursive; /* Match the font */
+      padding: 5px 15px; /* Match padding of taskCounter */
+      font-family: 'Architects Daughter', cursive; /* Match font */
       font-size: 1.2rem; /* Slightly bigger to be readable */
       color: white;
       background: rgba(0, 0, 0, 0.8); /* Black background with slight transparency */
-      border: 2px solid white; /* White border like the Save button */
-      border-radius: 20px; /* Rounded edges like the button */
+      border: 2px solid white; /* White border like taskCounter */
+      border-radius: 20px; /* Rounded edges like taskCounter */
       box-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* Subtle white shadow */
       text-align: center;
       display: inline-block;
+    }
+
+    /* Style the Save button to match taskCounter (oval, with padding and shadow) */
+    #saveNoteBtn {
+      padding: 5px 15px; /* Match padding of taskCounter */
+      font-family: 'Architects Daughter', cursive; /* Match font */
+      font-size: 1.2rem; /* Same font size as taskCounter */
+      color: white;
+      background: rgba(0, 0, 0, 0.8); /* Black background with slight transparency */
+      border: 2px solid white; /* White border like taskCounter */
+      border-radius: 20px; /* Rounded edges like taskCounter */
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* Subtle white shadow */
+      text-align: center;
+      cursor: pointer;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    #saveNoteBtn:hover {
+      background-color: rgba(0, 0, 0, 1);  /* Darker background on hover */
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.6); /* Stronger white shadow on hover */
+    }
+
+    #saveNoteBtn:focus {
+      outline: none;
     }
 
     /* Task Description Input */
@@ -237,16 +262,7 @@
   <!-- NOTES HEADER + SAVE BUTTON -->
   <div style="display:flex; align-items:center; margin-bottom:10px;">
     <h1 style="margin-right:10px;">NOTES</h1>
-    <button id="saveNoteBtn" style="
-        padding:5px 10px;
-        font-family: 'Architects Daughter', cursive;
-        font-size:0.9rem;
-        cursor:pointer;
-        box-shadow:0 0 8px white;
-        background:black;
-        color:white;
-        border:1px solid white;
-    ">Save</button>
+    <button id="saveNoteBtn">Save</button> <!-- Updated Save button -->
   </div>
   <div id="noteContainer" class="container editable" contenteditable="true"></div>
 

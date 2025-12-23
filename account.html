@@ -24,23 +24,6 @@
       margin-top: 50px;
     }
 
-    table {
-      width: 70%;
-      border-collapse: collapse;
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
-    th, td {
-      border: 1px solid white;
-      padding: 10px;
-    }
-
-    td.completed {
-      background-color: green;
-      color: white;
-    }
-
     input, button {
       padding: 10px;
       margin-top: 5px;
@@ -58,14 +41,29 @@
       padding: 10px;
     }
 
-.month {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 24px); /* One column per day */
-  gap: 2px;
-  overflow-x: auto;
-  justify-content: start;
-  margin-bottom: 20px;
-}
+    .monthContainer {
+      margin-bottom: 20px;
+    }
+
+    .monthLabel {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 5px;
+      font-size: 1rem;
+      background-color: black;
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      padding: 5px 0;
+    }
+
+    .month {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, 24px);
+      gap: 2px;
+      overflow-x: auto;
+      justify-content: start;
+    }
 
     .dayBox {
       width: 24px;
@@ -84,23 +82,11 @@
       color: white;
     }
 
-.dayBox:first-child {
-  position: sticky;
-  left: 0;
-  z-index: 2;
-  background-color: rgba(0, 0, 0, 0.7); /* slightly darker, but same width as other days */
-}
-
-    .monthLabel {
-      grid-column: span 31;
-      text-align: center;
-      font-weight: bold;
-      margin-bottom: 5px;
-      font-size: 0.9rem;
+    .dayBox:first-child {
       position: sticky;
-      top: 0;
-      background-color: black;
-      z-index: 3;
+      left: 0;
+      z-index: 2;
+      background-color: rgba(0,0,0,0.7);
     }
 
     /* BOTTOM BUTTON BAR */
@@ -187,6 +173,85 @@
   <script src="app.js"></script>
   <script src="habitTracker.js"></script>
 
+  <script>
+    // Adjust habitTracker.js to render month labels separately
+    document.addEventListener('DOMContentLoaded', () => {
+      const habitCalendarContainer = document.getElementById('habitCalendarContainer');
+      const habitBtns = document.querySelectorAll('.habitBtn');
+      const today = new Date();
+      const currentYear = today.getFullYear();
+
+      function getDaysInMonth(month, year) {
+        return new Date(year, month + 1, 0).getDate();
+      }
+
+      function loadHabitData(habit) {
+        return JSON.parse(localStorage.getItem(`habit-${habit}`)) || {};
+      }
+
+      function saveHabitData(habit, data) {
+        localStorage.setItem(`habit-${habit}`, JSON.stringify(data));
+      }
+
+      function loadScheduledTasks() {
+        return JSON.parse(localStorage.getItem('scheduledTasks')) || [];
+      }
+
+      function isHabitDoneFromTasks(habit, year, month, day) {
+        const tasks = loadScheduledTasks();
+        const keyDate = `${year}-${month + 1}-${day}`;
+        return tasks.some(task => task.done && task.date === keyDate && task.desc === habit);
+      }
+
+      function renderHabitCalendar(habit) {
+        habitCalendarContainer.innerHTML = '';
+        const data = loadHabitData(habit);
+
+        for (let month = 0; month < 12; month++) {
+          const monthContainer = document.createElement('div');
+          monthContainer.classList.add('monthContainer');
+
+          const monthLabel = document.createElement('div');
+          monthLabel.classList.add('monthLabel');
+          monthLabel.textContent = new Date(currentYear, month).toLocaleString('default', { month: 'long' });
+          monthContainer.appendChild(monthLabel);
+
+          const monthDiv = document.createElement('div');
+          monthDiv.classList.add('month');
+
+          const daysInMonth = getDaysInMonth(month, currentYear);
+          for (let day = 1; day <= daysInMonth; day++) {
+            const dayBox = document.createElement('div');
+            dayBox.classList.add('dayBox');
+            dayBox.textContent = day;
+
+            const key = `${currentYear}-${month + 1}-${day}`;
+
+            if (data[key] || isHabitDoneFromTasks(habit, currentYear, month, day)) {
+              dayBox.classList.add('completed');
+            }
+
+            dayBox.addEventListener('click', () => {
+              data[key] = !data[key];
+              saveHabitData(habit, data);
+              dayBox.classList.toggle('completed');
+            });
+
+            monthDiv.appendChild(dayBox);
+          }
+
+          monthContainer.appendChild(monthDiv);
+          habitCalendarContainer.appendChild(monthContainer);
+        }
+      }
+
+      habitBtns.forEach(btn => {
+        btn.addEventListener('click', () => renderHabitCalendar(btn.dataset.habit));
+      });
+
+      if (habitBtns.length > 0) renderHabitCalendar(habitBtns[0].dataset.habit);
+    });
+  </script>
+
 </body>
 </html>
-

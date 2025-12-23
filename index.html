@@ -18,18 +18,19 @@
       background: black; /* fallback */
     }
 
-    body {
-      background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, rgba(0,0,0,1) 100%),
-                  url('Forest.JPG') no-repeat center center fixed;
-      background-size: cover;
-      color: white;
-      font-family: 'Architects Daughter', cursive;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-      padding-bottom: 300px; /* Added space for the bottom bar */
-    }
+   body {
+  background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, rgba(0,0,0,1) 100%),
+              url('Forest.JPG') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  font-family: 'Architects Daughter', cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  padding-bottom: 600px; /* Increase this value to add extra space at the bottom */
+}
+
 
     h1 {
       font-family: 'Luckiest Guy', cursive;
@@ -154,8 +155,7 @@
 
 /* Scheduled Task Input Fields and Add Task Button */
 #taskInput, #taskDate, #addTask {
-  width: auto; /* Set width to auto so it doesn't take up the full container */
-  max-width: 100%; /* Ensure it won't overflow */
+  width: 80%;
   padding: 12px; /* Same padding as the "Add Task" button */
   margin-bottom: 10px; /* Space between elements */
   background: black;

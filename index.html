@@ -183,46 +183,6 @@
       outline: none;
     }
 
-    #habitContainer {
-  background: rgba(0,0,0,0.5);
-  border: 2px solid white;
-  box-shadow: 0 0 15px white;
-  padding: 20px;
-  width: 90%;
-  max-width: 700px;
-  margin-bottom: 20px;
-  color: white;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-th, td {
-  border: 1px solid white;
-  padding: 10px;
-}
-
-td.completed {
-  background-color: green;
-  color: white;
-}
-
-input, button {
-  padding: 10px;
-  margin-top: 5px;
-  width: 100%;
-  background: black;
-  color: white;
-  border: 1px solid white;
-  box-shadow: 0 0 8px white;
-  font-family: 'Architects Daughter', cursive;
-}
-
-
     #taskCounter {
       padding: 5px 15px;
       font-family: 'Architects Daughter', cursive;
@@ -348,31 +308,6 @@ input, button {
       <button class="bottomBtn" style="background-image: url('Button.PNG');"></button>
     </a>
   </div>
-
-  <h1>Habit Tracker</h1>
-
-<div id="habitContainer" class="container">
-  <table id="habitTable">
-    <thead>
-      <tr>
-        <th>Habit</th>
-        <th>Mon</th>
-        <th>Tue</th>
-        <th>Wed</th>
-        <th>Thu</th>
-        <th>Fri</th>
-        <th>Sat</th>
-        <th>Sun</th>
-        <th>Streak</th>
-      </tr>
-    </thead>
-    <tbody id="habitBody"></tbody>
-  </table>
-
-  <input type="text" id="newHabit" placeholder="New habit" />
-  <button id="addHabitBtn">Add Habit</button>
-</div>
-
 
   <script src="app.js"></script>
 </body>

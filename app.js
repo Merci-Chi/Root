@@ -17,10 +17,6 @@ const todayKey = today.toDateString(); // Use today's date as the key
 
 // Retrieve saved note from localStorage, if any
 let savedNote = JSON.parse(localStorage.getItem('dailyNote')) || {};
-
-// If the saved note doesn't belong to today, reset it to an empty note
-if (savedNote.date !== todayKey) {
-  savedNote = { date: todayKey, content: '' }; // Initialize an empty note for the new day
 }
 
 // Load the saved note content into the note container

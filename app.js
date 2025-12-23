@@ -183,7 +183,7 @@ if (todayTaskDesc) {
   sendNotification("Today's Tasks", todayTaskDesc);
 }
 
-// Optional: Schedule daily 9:00 AM reminder
+// ---------- DAILY REMINDER NOTIFICATION AT 9AM ----------
 function scheduleDailyReminder(hour, minute) {
   const now = new Date();
   const next = new Date();
@@ -197,5 +197,5 @@ function scheduleDailyReminder(hour, minute) {
   }, timeout);
 }
 
-// Uncomment below line to enable daily 9 AM reminder
+// Enable daily 9 AM reminder
 scheduleDailyReminder(9, 0);

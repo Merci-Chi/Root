@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let month = 0; month < 12; month++) {
       const monthDiv = document.createElement('div');
       monthDiv.classList.add('month');
+      monthDiv.style.gridTemplateColumns = `repeat(${getDaysInMonth(month, currentYear)}, 20px)`; // smaller width
 
       const monthLabel = document.createElement('div');
       monthLabel.classList.add('monthLabel');
@@ -44,6 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
       for (let day = 1; day <= daysInMonth; day++) {
         const dayBox = document.createElement('div');
         dayBox.classList.add('dayBox');
+        dayBox.style.width = '20px';   // smaller width
+        dayBox.style.height = '20px';  // smaller height
+        dayBox.style.fontSize = '0.65rem'; // smaller font
         dayBox.textContent = day;
 
         const key = `${currentYear}-${month + 1}-${day}`;
@@ -64,16 +68,15 @@ document.addEventListener('DOMContentLoaded', () => {
       habitCalendarContainer.appendChild(monthDiv);
     }
 
-    // Scroll to day 1 on the left
-    habitCalendarContainer.scrollLeft = 0;
+    // Scroll to top so day 1 is visible
+    habitCalendarContainer.scrollTop = 0;
   }
 
-  // Attach click events to buttons
   habitBtns.forEach(btn => {
     btn.addEventListener('click', () => renderHabitCalendar(btn.dataset.habit));
   });
 
-  // Render default habit on load
   if (habitBtns.length > 0) renderHabitCalendar(habitBtns[0].dataset.habit);
 
 });
+

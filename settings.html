@@ -16,11 +16,12 @@
       margin: 0;
       padding: 0;
       background: black; /* fallback */
+      position: relative;
     }
 
     body {
-     background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, rgba(0,0,0,1) 100%),
-                  url('Forest.JPG') no-repeat center center fixed;
+      background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, rgba(0,0,0,1) 100%),
+                   url('Forest.JPG') no-repeat center center fixed;
       background-size: cover;
       color: white;
       font-family: 'Architects Daughter', cursive;
@@ -29,7 +30,9 @@
       align-items: center;
       padding: 20px;
       padding-bottom: 600px;
+    }
 
+    /* Black transparent overlay */
     body::before {
       content: '';
       position: absolute;
@@ -37,8 +40,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
-      z-index: -1; /* Ensure overlay is behind other content */
+      background: rgba(0, 0, 0, 0.7); /* Black overlay with 70% opacity */
+      z-index: 999; /* Ensures the overlay is above the content */
     }
 
     h1 {
@@ -63,6 +66,7 @@
       margin-bottom: 20px;
       border-radius: 8px;
       background: rgba(0, 0, 0, 0.7); /* Transparent black background */
+      position: relative; /* Ensure content stays above the overlay */
     }
 
     /* Style for inputs */
@@ -74,7 +78,7 @@
       color: white;
       border: 1px solid white;
       font-family: 'Architects Daughter', cursive;
-      font-size: 1rem; /* Same font size for inputs and button */
+      font-size: 1rem;
       box-shadow: 0 0 8px white;
     }
 
@@ -87,31 +91,31 @@
       position: fixed;
       bottom: 0;
       left: 0;
-      width: 100%;  /* Full width */
+      width: 100%;
       display: flex;
-      justify-content: center; /* Center the buttons horizontally */
-      padding: 15px 0;  /* Added padding for better spacing */
-      background-color: rgba(0, 0, 0, 0.8); /* Apple-style black background */
-      border-radius: 40px; /* Oval container */
-      border: 2px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.5); /* Subtle white shadow */
+      justify-content: center;
+      padding: 15px 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 40px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
       z-index: 1000;
     }
 
     /* Styling the buttons as circles with icon */
     .bottomBtn {
-      width: 60px;  /* Circular width */
-      height: 60px; /* Circular height */
-      border-radius: 50%;  /* Makes the buttons circular */
-      margin: 0 10px; /* Reduced space between buttons */
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin: 0 10px;
       padding: 12px;
-      border: 2px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
-      background-color: rgba(0, 0, 0, 0.8); /* Apple-style black background */
-      background-size: 50px 50px; /* Adjust the icon size inside the button */
-      background-position: center; /* Center the icon in the button */
-      background-repeat: no-repeat; /* Ensure the icon doesn't repeat */
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      background-color: rgba(0, 0, 0, 0.8);
+      background-size: 50px 50px;
+      background-position: center;
+      background-repeat: no-repeat;
       transition: all 0.3s ease;
-      box-shadow: 0 0 8px rgba(255, 255, 255, 0.3); /* Subtle shadow */
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
       cursor: pointer;
       display: flex;
       justify-content: center;
@@ -119,18 +123,23 @@
     }
 
     .bottomBtn:hover {
-      background-color: rgba(0, 0, 0, 1);  /* Darker background on hover */
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.6); /* Stronger white shadow on hover */
+      background-color: rgba(0, 0, 0, 1);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
     }
 
     .bottomBtn:focus {
       outline: none;
     }
-
   </style>
 </head>
 <body>
 
+  <!-- Settings Content -->
+  <div class="settings-container">
+    <h1>Settings</h1>
+    <h2>Adjust your preferences below</h2>
+    <!-- Settings inputs go here -->
+  </div>
 
   <!-- BOTTOM BUTTON BAR -->
   <div id="bottomBar">

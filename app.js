@@ -199,3 +199,30 @@ function scheduleDailyReminder(hour, minute) {
 
 // Enable daily 9 AM reminder
 scheduleDailyReminder(9, 0);
+
+<!-- BOTTOM BUTTON BAR -->
+<div id="bottomBar">
+    <button class="bottomBtn" style="background-image: url('Tracker.PNG');"></button> <!-- Button 1 with icon -->
+    <button class="bottomBtn" style="background-image: url('Settings.PNG');"></button> <!-- Button 2 with icon -->
+    <!-- New button for Notifications -->
+    <button id="notifBtn" class="bottomBtn" style="background-image: url('NotificationIcon.PNG');"></button> <!-- Notification button -->
+</div>
+
+/* Styling the Notification Button at the Bottom */
+#notifBtn {
+  background-image: url('NotificationIcon.PNG'); /* Set to your notification icon */
+  background-size: 50px 50px;  /* Adjust the icon size inside the button */
+  background-position: center;  /* Center the icon */
+  background-repeat: no-repeat; /* Ensure the icon doesn't repeat */
+  transition: all 0.3s ease;
+}
+
+/* Add styles for when notifications are enabled or disabled */
+#notifBtn.enabled {
+  background-color: rgba(0, 255, 0, 0.6); /* Green for enabled */
+}
+
+#notifBtn.disabled {
+  background-color: rgba(255, 0, 0, 0.6); /* Red for disabled */
+}
+

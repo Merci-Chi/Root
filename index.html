@@ -3,56 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title></title>
-
-  <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>K21</title>
-
-    <!-- Add app icon for different device resolutions -->
-    <link rel="icon" href="path/to/icon-192.png" sizes="192x192">
-    <link rel="icon" href="path/to/icon-512.png" sizes="512x512">
-
-    <!-- Optional: Add for PWA support -->
-    <link rel="manifest" href="manifest.json">
-</head>
-<body>
-    <!-- Your page content -->
-</body>
-</html>
-
+  <title>K21</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Luckiest+Guy&display=swap" rel="stylesheet">
 
-  <!-- Transparent overlay above the background -->
-<div class="overlay"></div>
-  
   <style>
-/* Black transparent overlay with a more subtle fade at the bottom */
-.overlay {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 70%, rgba(0, 0, 0, 0) 100%);
-  z-index: 0; /* Ensure the overlay stays beneath the content */
-}
-
-
     html, body {
       height: 100%;
       margin: 0;
       padding: 0;
       background: black;
-        z-index: 1;
     }
 
     body {
@@ -66,12 +29,11 @@
       align-items: center;
       padding: 20px;
       padding-bottom: 600px;
-        z-index: 1;
     }
 
     h1 {
       font-family: 'Luckiest Guy', cursive;
-      margin-bottom: 10px;  z-index: 1;
+      margin-bottom: 10px;
     }
 
     h2 {
@@ -79,7 +41,6 @@
       font-size: 1.3rem;
       margin-top: 10px;
       margin-bottom: 5px;
-      z-index: 1;
     }
 
     #todayTasks {
@@ -91,14 +52,12 @@
       max-width: 500px;
       margin-bottom: 20px;
       border-radius: 8px;
-      z-index: 1;
     }
 
     #todayTasks li {
       font-size: 1.25rem;
       line-height: 1.6;
       cursor: pointer;
-      z-index: 1;
     }
 
     .container {
@@ -108,14 +67,12 @@
       width: 90%;
       max-width: 500px;
       margin-bottom: 20px;
-      z-index: 1;
     }
 
     .editable {
       min-height: 180px;
       outline: none;
       white-space: pre-wrap;
-      z-index: 1;
     }
 
     input, button {
@@ -128,24 +85,20 @@
       font-family: 'Architects Daughter', cursive;
       font-size: 1rem;
       box-shadow: 0 0 8px white;
-      z-index: 1;
     }
 
     button {
       cursor: pointer;
-      z-index: 1;
     }
 
     ul {
       list-style: none;
       padding-left: 0;
-      z-index: 1;
     }
 
     li.done {
       text-decoration: line-through;
       opacity: 0.6;
-      z-index: 1;
     }
 
     #noteContainer {
@@ -156,7 +109,6 @@
       width: 90%;
       max-width: 500px;
       margin-bottom: 20px;
-      z-index: 1;
     }
 
     #bottomBar {
@@ -172,7 +124,6 @@
       border: 2px solid rgba(255, 255, 255, 0.3);
       box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
       z-index: 1000;
-      
     }
 
     .bottomBtn {
@@ -230,18 +181,15 @@
       display: inline-block;
       transition: all 0.3s ease;
       margin-top: 15px;
-      z-index: 1;
     }
 
     #saveNoteBtn:hover {
       background-color: rgba(0, 0, 0, 1);
       box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
-      z-index: 1;
     }
 
     #saveNoteBtn:focus {
       outline: none;
-      z-index: 1;
     }
 
     #taskInput {
@@ -256,7 +204,6 @@
       box-sizing: border-box;
       box-shadow: 0 0 8px white;
       text-align: center;
-      z-index: 1;
     }
 
     #taskDate {
@@ -270,10 +217,8 @@
       font-size: 1rem;
       box-sizing: border-box;
       box-shadow: 0 0 8px white;
-      z-index: 1;
     }
-<label for="taskDate">Select Task Date: </label>
-<input id="taskDate" type="date" />
+
 
     #addTask {
       width: 100%;
@@ -299,13 +244,12 @@
   <h2>Today’s Tasks <span id="taskCounter">0/0</span></h2>
   <ul id="todayTasks"></ul>
 
-    <!-- NOTES HEADER + SAVE BUTTON -->
+  <!-- NOTES HEADER + SAVE BUTTON -->
   <div style="display:flex; align-items:center; margin-bottom:10px;">
     <h1 style="margin-right:10px;">NOTES</h1>
-    <button id="saveNoteBtn">Save</button> <!-- This button will save the notes -->
+    <button id="saveNoteBtn">Save</button>
   </div>
-  <div id="noteContainer" class="container editable" contenteditable="true"></div>  <!-- Editable area for notes -->
-
+  <div id="noteContainer" class="container editable" contenteditable="true"></div>
 
   <!-- SCHEDULED TASKS -->
   <h2>Scheduled Tasks</h2>

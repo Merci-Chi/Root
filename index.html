@@ -14,7 +14,7 @@
 <div class="overlay"></div>
   
   <style>
-   /* Black transparent overlay above the background but below content */
+ /* Black transparent overlay with a fade at the bottom */
 .overlay {
   content: '';
   position: absolute;
@@ -22,10 +22,9 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7); /* Black overlay with 70% opacity */
-  z-index: 1; /* Keep this value low so the overlay stays underneath the content */
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+  z-index: 0; /* Ensure the overlay stays beneath the content */
 }
-
 
     html, body {
       height: 100%;

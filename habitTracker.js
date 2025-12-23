@@ -21,11 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
     return JSON.parse(localStorage.getItem('scheduledTasks')) || [];
   }
 
-  // Check if a task is done from app.js for syncing
   function isHabitDoneFromTasks(habit, year, month, day) {
     const tasks = loadScheduledTasks();
     const keyDate = `${year}-${month + 1}-${day}`;
-    return tasks.some(task => task.date === keyDate && task.desc === habit && task.done);
+    return tasks.some(task => task.done && task.date === keyDate && task.desc === habit);
   }
 
   function renderHabitCalendar(habit) {
@@ -49,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const key = `${currentYear}-${month + 1}-${day}`;
 
-        // Mark completed if either manually toggled or task is done in app.js
         if (data[key] || isHabitDoneFromTasks(habit, currentYear, month, day)) {
           dayBox.classList.add('completed');
         }
@@ -67,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Attach click events to buttons
   habitBtns.forEach(btn => {
     btn.addEventListener('click', () => renderHabitCalendar(btn.dataset.habit));
   });

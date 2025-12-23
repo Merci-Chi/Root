@@ -12,25 +12,36 @@ currentDateEl.textContent = today.toLocaleDateString('en-US', {
 const noteContainer = document.getElementById('noteContainer');
 const saveNoteBtn = document.getElementById('saveNoteBtn');
 
+// Get today's date key (e.g., "Thu Dec 22 2025")
 const todayKey = today.toDateString();
+
+// Retrieve saved note from localStorage, if any
 let savedNote = JSON.parse(localStorage.getItem('dailyNote')) || {};
 
+// If the saved note doesn't belong to today, reset it to an empty note
 if (savedNote.date !== todayKey) {
   savedNote = { date: todayKey, content: '' };
 }
 
+// Load the saved note content into the note container
 noteContainer.textContent = savedNote.content;
 
+// Listen for changes in the note container (user input)
 noteContainer.addEventListener('input', () => {
+  // Update the saved note with the latest content
   savedNote.content = noteContainer.textContent;
+
+  // Store the updated note in localStorage
   localStorage.setItem('dailyNote', JSON.stringify(savedNote));
 });
 
 // ---------- SAVE BUTTON ----------
 saveNoteBtn.addEventListener('click', () => {
+  // Save the content when the user clicks the Save button
   savedNote.content = noteContainer.textContent;
   savedNote.date = todayKey;
   localStorage.setItem('dailyNote', JSON.stringify(savedNote));
+
   alert("Notes saved!");
 });
 
@@ -41,6 +52,7 @@ const addTask = document.getElementById('addTask');
 const taskList = document.getElementById('taskList');
 const todayTasksEl = document.getElementById('todayTasks');
 
+// Function to format the date in YYYY-MM-DD format (ISO format)
 function getLocalISODate(date) {
   const y = date.getFullYear();
   const m = String(date.getMonth() + 1).padStart(2, '0');

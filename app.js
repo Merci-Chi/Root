@@ -141,6 +141,9 @@ addTask.addEventListener('click', () => {
   renderTasks();
 });
 
+// Set today's date in the taskDate input
+taskDate.value = todayISO;  // This sets the date picker to today's date
+
 // Initial render
 renderTasks();
 

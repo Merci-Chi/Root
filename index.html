@@ -103,25 +103,23 @@
   width: 100%;
   display: flex;
   justify-content: center; /* Center the buttons horizontally */
-  padding: 8px 20px;  /* Reduced padding for shorter bar */
-  background: rgba(0,0,0,0.8);
-  z-index: 1000;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 20px;  /* Adjusted padding for better spacing */
+  background-color: rgba(255, 255, 255, 0.1); /* Match the buttons' background */
   border-radius: 40px; /* Oval container */
+  border: 2px solid rgba(255, 255, 255, 0.2); /* Border similar to the buttons */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Shadow for the entire bar */
+  z-index: 1000;
 }
 
-/* Styling the buttons with PNG icons */
+/* Styling the buttons as circles */
 .bottomBtn {
   width: 60px;  /* Circular width */
   height: 60px; /* Circular height */
   border-radius: 50%;  /* Makes the buttons circular */
   margin: 0 10px; /* Reduced space between buttons */
   padding: 12px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.2);  /* Border for each button */
   background-color: rgba(255, 255, 255, 0.1); /* Slight white background for button */
-  background-image: url('icon.png');  /* Your transparent PNG image */
-  background-size: 40px 40px; /* Scale PNG icon to fit the button */
-  background-position: center; /* Center the image inside the button */
   transition: all 0.3s ease;
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
   cursor: pointer;

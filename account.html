@@ -52,6 +52,35 @@ input, button {
   font-family: 'Architects Daughter', cursive;
 }
 
+.month {
+  display: grid;
+  grid-template-columns: 30px repeat(30, 24px); /* First column fixed width, rest scroll */
+  gap: 2px;
+  overflow-x: auto;
+  justify-content: start;
+  padding-left: 0; /* optional */
+}
+
+.dayBox:first-child {
+  position: sticky;
+  left: 0;
+  background-color: rgba(50, 50, 50, 0.8); /* slightly different so it stands out */
+  z-index: 2;
+}
+
+.monthLabel {
+  grid-column: span 31;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+  position: sticky;
+  top: 0;
+  background-color: black;
+  z-index: 3;
+}
+
+    
 #habitCalendarContainer {
   overflow-y: auto;
   max-height: 75vh;

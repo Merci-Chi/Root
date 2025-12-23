@@ -16,7 +16,7 @@
       color: white;
       font-family: 'Architects Daughter', cursive;
       margin: 0;
-      padding: 200;
+      padding: 0;
     }
 
     h1 {
@@ -24,133 +24,116 @@
       margin-top: 50px;
     }
 
-table {
-  width: 70%;
-  border-collapse: collapse;
-  text-align: center;
-  margin-bottom: 10px;
-}
+    table {
+      width: 70%;
+      border-collapse: collapse;
+      text-align: center;
+      margin-bottom: 10px;
+    }
 
-th, td {
-  border: 1px solid white;
-  padding: 10px;
-}
+    th, td {
+      border: 1px solid white;
+      padding: 10px;
+    }
 
-td.completed {
-  background-color: green;
-  color: white;
-}
+    td.completed {
+      background-color: green;
+      color: white;
+    }
 
-input, button {
-  padding: 10px;
-  margin-top: 5px;
-  width: 100%;
-  background: black;
-  color: white;
-  border: 1px solid white;
-  box-shadow: 0 0 8px white;
-  font-family: 'Architects Daughter', cursive;
-}
+    input, button {
+      padding: 10px;
+      margin-top: 5px;
+      width: 100%;
+      background: black;
+      color: white;
+      border: 1px solid white;
+      box-shadow: 0 0 8px white;
+      font-family: 'Architects Daughter', cursive;
+    }
 
-.month {
-  display: grid;
-  grid-template-columns: 30px repeat(30, 24px); /* First column fixed width, rest scroll */
-  gap: 2px;
-  overflow-x: auto;
-  justify-content: start;
-  padding-left: 0; /* optional */
-}
+    #habitCalendarContainer {
+      overflow-y: auto;
+      max-height: 75vh;
+      padding: 10px;
+    }
 
-.dayBox:first-child {
-  position: sticky;
-  left: 0;
-  background-color: rgba(50, 50, 50, 0.8); /* slightly different so it stands out */
-  z-index: 2;
-}
+    /* Month grid with sticky first day */
+    .month {
+      display: grid;
+      grid-template-columns: 30px repeat(30, 24px);
+      gap: 2px;
+      overflow-x: auto;
+      justify-content: start;
+      margin-bottom: 20px;
+    }
 
-.monthLabel {
-  grid-column: span 31;
-  text-align: center;
-  font-weight: bold;
-  margin-bottom: 5px;
-  font-size: 0.9rem;
-  position: sticky;
-  top: 0;
-  background-color: black;
-  z-index: 3;
-}
+    .dayBox {
+      width: 24px;
+      height: 24px;
+      border: 1px solid white;
+      text-align: center;
+      font-size: 0.7rem;
+      line-height: 24px;
+      cursor: pointer;
+      user-select: none;
+      background-color: rgba(0,0,0,0.5);
+    }
 
-    
-#habitCalendarContainer {
-  overflow-y: auto;
-  max-height: 75vh;
-  padding: 10px;
-}
+    .dayBox.completed {
+      background-color: green;
+      color: white;
+    }
 
-.month {
-  display: grid;
-  grid-template-columns: repeat(31, 1fr);
-  gap: 2px;
-  justify-content: center;
-  overflow-x: auto;
-}
+    /* Sticky first day */
+    .dayBox:first-child {
+      position: sticky;
+      left: 0;
+      background-color: rgba(50, 50, 50, 0.8);
+      z-index: 2;
+    }
 
-.dayBox {
-  width: 24px;
-  height: 24px;
-  border: 1px solid white;
-  text-align: center;
-  font-size: 0.7rem;
-  line-height: 24px;
-  cursor: pointer;
-  user-select: none;
-  background-color: rgba(0,0,0,0.5);
-}
-
-.dayBox.completed {
-  background-color: green;
-  color: white;
-}
-
-.monthLabel {
-  grid-column: span 31;
-  text-align: center;
-  font-weight: bold;
-  margin-bottom: 5px;
-  font-size: 0.9rem;
-}
-
+    .monthLabel {
+      grid-column: span 31;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 5px;
+      font-size: 0.9rem;
+      position: sticky;
+      top: 0;
+      background-color: black;
+      z-index: 3;
+    }
 
     /* BOTTOM BUTTON BAR */
     #bottomBar {
       position: fixed;
       bottom: 0;
       left: 0;
-      width: 100%;  /* Full width */
+      width: 100%;
       display: flex;
-      justify-content: center; /* Center the buttons horizontally */
-      padding: 15px 0;  /* Added padding for better spacing */
-      background-color: rgba(0, 0, 0, 0.8); /* Apple-style black background */
-      border-radius: 40px; /* Oval container */
-      border: 2px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.5); /* Subtle white shadow */
+      justify-content: center;
+      padding: 15px 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 40px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
       z-index: 1000;
     }
 
-    /* Styling the buttons as circles with icon */
     .bottomBtn {
-      width: 60px;  /* Circular width */
-      height: 60px; /* Circular height */
-      border-radius: 50%;  /* Makes the buttons circular */
-      margin: 0 10px; /* Reduced space between buttons */
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin: 0 10px;
       padding: 12px;
-      border: 2px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
-      background-color: rgba(0, 0, 0, 0.8); /* Apple-style black background */
-      background-size: 50px 50px; /* Adjust the icon size inside the button */
-      background-position: center; /* Center the icon in the button */
-      background-repeat: no-repeat; /* Ensure the icon doesn't repeat */
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      background-color: rgba(0, 0, 0, 0.8);
+      background-size: 50px 50px;
+      background-position: center;
+      background-repeat: no-repeat;
       transition: all 0.3s ease;
-      box-shadow: 0 0 8px rgba(255, 255, 255, 0.3); /* Subtle shadow */
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
       cursor: pointer;
       display: flex;
       justify-content: center;
@@ -158,12 +141,20 @@ input, button {
     }
 
     .bottomBtn:hover {
-      background-color: rgba(0, 0, 0, 1);  /* Darker background on hover */
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.6); /* Stronger white shadow on hover */
+      background-color: rgba(0, 0, 0, 1);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
     }
 
     .bottomBtn:focus {
       outline: none;
+    }
+
+    #habitButtons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      justify-content: center;
     }
   </style>
 </head>
@@ -175,28 +166,29 @@ input, button {
   <!-- BOTTOM BUTTON BAR -->
   <div id="bottomBar">
     <a href="index.html">
-      <button class="bottomBtn" style="background-image: url('Tracker.PNG');"></button> <!-- Button 1 with icon -->
+      <button class="bottomBtn" style="background-image: url('Tracker.PNG');"></button>
     </a>
     <a href="settings.html">
-      <button class="bottomBtn" style="background-image: url('Settings.PNG');"></button> <!-- Button 2 with icon -->
+      <button class="bottomBtn" style="background-image: url('Settings.PNG');"></button>
     </a>
     <a href="account.html">
-      <button class="bottomBtn" style="background-image: url('Button.PNG');"></button> <!-- Button 3 with icon -->
+      <button class="bottomBtn" style="background-image: url('Button.PNG');"></button>
     </a>
   </div>
 
- <h1>Habit Tracker</h1>
+  <h1>Habit Tracker</h1>
 
-<div id="habitButtons" style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px;">
-  <button class="habitBtn" data-habit="T-25">T-25</button>
-  <button class="habitBtn" data-habit="Bullet Journal">Bullet Journal</button>
-  <button class="habitBtn" data-habit="Miles">Miles</button>
-</div>
+  <div id="habitButtons">
+    <button class="habitBtn" data-habit="T-25">T-25</button>
+    <button class="habitBtn" data-habit="Bullet Journal">Bullet Journal</button>
+    <button class="habitBtn" data-habit="Miles">Miles</button>
+  </div>
 
-<div id="habitCalendarContainer" class="container" style="overflow-y:auto; max-height:75vh; padding:10px;"></div>
+  <div id="habitCalendarContainer" class="container"></div>
 
   <script src="app.js"></script>
-<script src="habitTracker.js"></script>
+  <script src="habitTracker.js"></script>
 
 </body>
 </html>
+

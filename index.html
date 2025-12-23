@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Daily Notes</title>
+  <title>Index</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,19 +18,18 @@
       background: black; /* fallback */
     }
 
-   body {
-  background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, rgba(0,0,0,1) 100%),
-              url('Forest.JPG') no-repeat center center fixed;
-  background-size: cover;
-  color: white;
-  font-family: 'Architects Daughter', cursive;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  padding-bottom: 600px; /* Increase this value to add extra space at the bottom */
-}
-
+    body {
+      background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, rgba(0,0,0,1) 100%),
+                  url('Forest.JPG') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      font-family: 'Architects Daughter', cursive;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      padding-bottom: 600px; /* Increase this value to add extra space at the bottom */
+    }
 
     h1 {
       font-family: 'Luckiest Guy', cursive;
@@ -44,18 +43,17 @@
       margin-bottom: 5px;
     }
 
-   /* Today's Tasks Container with Transparent Black Background */
-#todayTasks {
-  background: rgba(0, 0, 0, 0.5);
-  border: 2px solid white;
-  box-shadow: 0 0 15px white;
-  padding: 20px;
-  width: 90%;
-  max-width: 500px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-}
-
+    /* Today's Tasks Container with Transparent Black Background */
+    #todayTasks {
+      background: rgba(0, 0, 0, 0.5);
+      border: 2px solid white;
+      box-shadow: 0 0 15px white;
+      padding: 20px;
+      width: 90%;
+      max-width: 500px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
 
     #todayTasks li {
       font-size: 1.25rem;
@@ -104,15 +102,29 @@
       opacity: 0.6;
     }
 
-    /* Notes Container with Transparent Black Background */
-    #noteContainer {
-      background: rgba(0, 0, 0, 0.5); /* Transparent black */
-      border: 2px solid white;
-      box-shadow: 0 0 15px white;
-      padding: 20px;
-      width: 90%;
-      max-width: 500px;
-      margin-bottom: 20px;
+    /* Task Date Input */
+    #taskDate {
+      width: 93%; /* Adjust this width value as needed */
+      padding: 12px;
+      margin-bottom: 10px;
+      background: black;
+      color: white;
+      border: 1px solid white;
+      font-family: 'Architects Daughter', cursive;
+      font-size: 1rem;
+      box-sizing: border-box;
+      box-shadow: 0 0 8px white;
+      position: relative; /* Needed for the placeholder */
+    }
+
+    /* Simulated Placeholder */
+    #taskDate[data-placeholder]:before {
+      content: attr(data-placeholder);
+      color: rgba(255, 255, 255, 0.6); /* Light gray color for placeholder */
+      position: absolute;
+      top: 12px;
+      left: 10px;
+      pointer-events: none;
     }
 
     /* Bottom Bar Style */
@@ -160,59 +172,6 @@
       outline: none;
     }
 
-/* Task Description Input */
-#taskInput {
-  width: 100%; /* Adjust the width as needed */
-  padding: 12px;
-  margin-bottom: 10px;
-  background: black;
-  color: white;
-  border: 1px solid white;
-  font-family: 'Architects Daughter', cursive;
-  font-size: 1rem;
-  box-sizing: border-box;
-  box-shadow: 0 0 8px white;
-}
-
-/* Task Date Input */
-#taskDate {
-  width: 93%; /* Adjust this width value as needed */
-  padding: 12px;
-  margin-bottom: 10px;
-  background: black;
-  color: white;
-  border: 1px solid white;
-  font-family: 'Architects Daughter', cursive;
-  font-size: 1rem;
-  box-sizing: border-box;
-  box-shadow: 0 0 8px white;
-}
-
-/* Add Task Button */
-#addTask {
-  width: 50%; /* Adjust this width value as needed */
-  padding: 12px;
-  margin-bottom: 10px;
-  background: black;
-  color: white;
-  border: 1px solid white;
-  font-family: 'Architects Daughter', cursive;
-  font-size: 1rem;
-  cursor: pointer;
-  box-sizing: border-box;
-  box-shadow: 0 0 8px white;
-}
-
-
-
-    /* Ensure Add Task Button has same size as inputs */
-    #addTask {
-      width: 100%; /* Full width to match the inputs */
-      padding: 12px; /* Same padding as the inputs */
-      font-size: 1rem; /* Consistent font size */
-      cursor: pointer;
-    }
-
   </style>
 </head>
 <body>
@@ -221,7 +180,7 @@
   <h1 id="currentDate"></h1>
 
   <!-- TODAY'S TASKS -->
-  <h2>Today’s Tasks <span id="taskCounter">0/0</span></h2>
+  <h2>Today’s Tasks</h2>
   <ul id="todayTasks"></ul>
 
   <!-- NOTES HEADER + SAVE BUTTON -->
@@ -244,19 +203,49 @@
   <h2>Scheduled Tasks</h2>
   <div class="container">
     <input id="taskInput" placeholder="Task description" />
-    <input id="taskDate" type="date"; style="
-        padding:5px 10px" />
+    <input id="taskDate" type="date" style="padding:5px 10px" />
     <button id="addTask">Add Task</button>
     <ul id="taskList"></ul>
   </div>
 
   <!-- BOTTOM BUTTON BAR -->
   <div id="bottomBar">
-    <button class="bottomBtn" style="background-image: url('Tracker.PNG');"></button> <!-- Button 1 with icon -->
-    <button class="bottomBtn" style="background-image: url('Settings.PNG');"></button> <!-- Button 2 with icon -->
-    <button class="bottomBtn" style="background-image: url('Button.PNG');"></button> <!-- Button 3 with icon -->
+    <a href="index.html">
+      <button class="bottomBtn" style="background-image: url('Tracker.PNG');"></button> <!-- Button 1 with icon -->
+    </a>
+    <a href="settings.html">
+      <button class="bottomBtn" style="background-image: url('Settings.PNG');"></button> <!-- Button 2 with icon -->
+    </a>
+    <a href="account.html">
+      <button class="bottomBtn" style="background-image: url('Button.PNG');"></button> <!-- Button 3 with icon -->
+    </a>
   </div>
 
-  <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const taskDateInput = document.getElementById('taskDate');
+
+      // Default text to show before a date is selected
+      const defaultDateText = 'Select a Date';
+
+      // Set the default text in the input field when the page loads
+      if (!taskDateInput.value) {
+        taskDateInput.setAttribute('data-placeholder', defaultDateText);
+      }
+
+      // When the user selects a date, remove the placeholder
+      taskDateInput.addEventListener('input', function () {
+        taskDateInput.removeAttribute('data-placeholder');
+      });
+
+      // If the user clears the date, show the placeholder again
+      taskDateInput.addEventListener('click', function () {
+        if (!taskDateInput.value) {
+          taskDateInput.setAttribute('data-placeholder', defaultDateText);
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>

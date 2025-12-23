@@ -1,89 +1,77 @@
-// ---------- HABIT TRACKER WITH TASK SYNC ----------
+document.addEventListener('DOMContentLoaded', () => {
 
-const habitCalendarContainer = document.getElementById('habitCalendarContainer');
-const habitBtns = document.querySelectorAll('.habitBtn');
-const today = new Date();
-const currentYear = today.getFullYear();
+  const habitCalendarContainer = document.getElementById('habitCalendarContainer');
+  const habitBtns = document.querySelectorAll('.habitBtn');
+  const today = new Date();
+  const currentYear = today.getFullYear();
 
-// Helper: get number of days in a month
-function getDaysInMonth(month, year) {
-  return new Date(year, month + 1, 0).getDate();
-}
+  function getDaysInMonth(month, year) {
+    return new Date(year, month + 1, 0).getDate();
+  }
 
-// Load habit data from localStorage
-function loadHabitData(habit) {
-  return JSON.parse(localStorage.getItem(`habit-${habit}`)) || {};
-}
+  function loadHabitData(habit) {
+    return JSON.parse(localStorage.getItem(`habit-${habit}`)) || {};
+  }
 
-// Save habit data to localStorage
-function saveHabitData(habit, data) {
-  localStorage.setItem(`habit-${habit}`, JSON.stringify(data));
-}
+  function saveHabitData(habit, data) {
+    localStorage.setItem(`habit-${habit}`, JSON.stringify(data));
+  }
 
-// Load scheduledTasks from app.js localStorage
-function loadScheduledTasks() {
-  return JSON.parse(localStorage.getItem('scheduledTasks')) || [];
-}
+  function loadScheduledTasks() {
+    return JSON.parse(localStorage.getItem('scheduledTasks')) || [];
+  }
 
-// Check if a habit is completed on a given date based on tasks
-function isHabitDoneFromTasks(habit, year, month, day) {
-  const tasks = loadScheduledTasks();
-  const keyDate = `${year}-${month + 1}-${day}`;
-  return tasks.some(task => {
-    if (!task.done) return false;
-    const taskDate = task.date;
-    return taskDate === keyDate && task.desc === habit;
-  });
-}
+  function isHabitDoneFromTasks(habit, year, month, day) {
+    const tasks = loadScheduledTasks();
+    const keyDate = `${year}-${month + 1}-${day}`;
+    return tasks.some(task => task.done && task.date === keyDate && task.desc === habit);
+  }
 
-// Render full-year calendar for a given habit
-function renderHabitCalendar(habit) {
-  habitCalendarContainer.innerHTML = '';
-  const data = loadHabitData(habit);
+  function renderHabitCalendar(habit) {
+    habitCalendarContainer.innerHTML = '';
+    const data = loadHabitData(habit);
 
-  for (let month = 0; month < 12; month++) {
-    const monthDiv = document.createElement('div');
-    monthDiv.classList.add('month');
+    for (let month = 0; month < 12; month++) {
+      const monthDiv = document.createElement('div');
+      monthDiv.classList.add('month');
 
-    // Month label
-    const monthLabel = document.createElement('div');
-    monthLabel.classList.add('monthLabel');
-    monthLabel.textContent = new Date(currentYear, month).toLocaleString('default', { month: 'long' });
-    monthDiv.appendChild(monthLabel);
+      const monthLabel = document.createElement('div');
+      monthLabel.classList.add('monthLabel');
+      monthLabel.textContent = new Date(currentYear, month).toLocaleString('default', { month: 'long' });
+      monthDiv.appendChild(monthLabel);
 
-    const daysInMonth = getDaysInMonth(month, currentYear);
-    for (let day = 1; day <= daysInMonth; day++) {
-      const dayBox = document.createElement('div');
-      dayBox.classList.add('dayBox');
-      dayBox.textContent = day;
+      const daysInMonth = getDaysInMonth(month, currentYear);
+      for (let day = 1; day <= daysInMonth; day++) {
+        const dayBox = document.createElement('div');
+        dayBox.classList.add('dayBox');
+        dayBox.textContent = day;
 
-      const key = `${currentYear}-${month + 1}-${day}`;
+        const key = `${currentYear}-${month + 1}-${day}`;
+        if (data[key] || isHabitDoneFromTasks(habit, currentYear, month, day)) {
+          dayBox.classList.add('completed');
+        }
 
-      // Sync with app.js tasks
-      if (data[key] || isHabitDoneFromTasks(habit, currentYear, month, day)) {
-        dayBox.classList.add('completed');
+        dayBox.addEventListener('click', () => {
+          data[key] = !data[key];
+          saveHabitData(habit, data);
+          dayBox.classList.toggle('completed');
+        });
+
+        monthDiv.appendChild(dayBox);
       }
 
-      // Toggle manually
-      dayBox.addEventListener('click', () => {
-        data[key] = !data[key];
-        saveHabitData(habit, data);
-        dayBox.classList.toggle('completed');
-      });
-
-      monthDiv.appendChild(dayBox);
+      habitCalendarContainer.appendChild(monthDiv);
     }
-
-    habitCalendarContainer.appendChild(monthDiv);
   }
-}
 
-// Attach click events to habit buttons
-habitBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    renderHabitCalendar(btn.dataset.habit);
+  habitBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      renderHabitCalendar(btn.dataset.habit);
+    });
   });
+
+  // Render default habit on load
+  if (habitBtns.length > 0) renderHabitCalendar(habitBtns[0].dataset.habit);
+
 });
 
-// Render default habit calendar on load
-if (habitBtns.length > 0) renderHabitCalendar(habitBtns[0].dataset.habit);

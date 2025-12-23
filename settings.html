@@ -21,7 +21,7 @@
 
     body {
       background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, rgba(0,0,0,1) 100%),
-                   url('Forest.JPG') no-repeat center center fixed;
+                  url('Forest.JPG') no-repeat center center fixed;
       background-size: cover;
       color: white;
       font-family: 'Architects Daughter', cursive;
@@ -30,10 +30,11 @@
       align-items: center;
       padding: 20px;
       padding-bottom: 600px;
+      z-index: 1; /* Ensure the content stays above the overlay */
     }
 
-    /* Black transparent overlay */
-    body::before {
+    /* Black transparent overlay above the background but below content */
+    .overlay {
       content: '';
       position: absolute;
       top: 0;
@@ -41,7 +42,7 @@
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.7); /* Black overlay with 70% opacity */
-      z-index: 999; /* Ensures the overlay is above the content */
+      z-index: 0; /* Ensure the overlay stays beneath the content */
     }
 
     h1 {
@@ -67,6 +68,7 @@
       border-radius: 8px;
       background: rgba(0, 0, 0, 0.7); /* Transparent black background */
       position: relative; /* Ensure content stays above the overlay */
+      z-index: 1; /* Content should be above the overlay */
     }
 
     /* Style for inputs */
@@ -130,9 +132,13 @@
     .bottomBtn:focus {
       outline: none;
     }
+
   </style>
 </head>
 <body>
+
+  <!-- Transparent overlay above the background -->
+  <div class="overlay"></div>
 
   <!-- Settings Content -->
   <div class="settings-container">

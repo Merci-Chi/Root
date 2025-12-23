@@ -21,10 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
     return JSON.parse(localStorage.getItem('scheduledTasks')) || [];
   }
 
+  // Check if a task is done from app.js for syncing
   function isHabitDoneFromTasks(habit, year, month, day) {
     const tasks = loadScheduledTasks();
     const keyDate = `${year}-${month + 1}-${day}`;
-    return tasks.some(task => task.done && task.date === keyDate && task.desc === habit);
+    return tasks.some(task => task.date === keyDate && task.desc === habit && task.done);
   }
 
   function renderHabitCalendar(habit) {
@@ -34,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let month = 0; month < 12; month++) {
       const monthDiv = document.createElement('div');
       monthDiv.classList.add('month');
-      monthDiv.style.gridTemplateColumns = `repeat(${getDaysInMonth(month, currentYear)}, 20px)`; // smaller width
 
       const monthLabel = document.createElement('div');
       monthLabel.classList.add('monthLabel');
@@ -45,13 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
       for (let day = 1; day <= daysInMonth; day++) {
         const dayBox = document.createElement('div');
         dayBox.classList.add('dayBox');
-        dayBox.style.width = '20px';   // smaller width
-        dayBox.style.height = '20px';  // smaller height
-        dayBox.style.fontSize = '0.65rem'; // smaller font
         dayBox.textContent = day;
 
         const key = `${currentYear}-${month + 1}-${day}`;
 
+        // Mark completed if either manually toggled or task is done in app.js
         if (data[key] || isHabitDoneFromTasks(habit, currentYear, month, day)) {
           dayBox.classList.add('completed');
         }
@@ -67,15 +65,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
       habitCalendarContainer.appendChild(monthDiv);
     }
-
-    // Scroll to top so day 1 is visible
-    habitCalendarContainer.scrollTop = 0;
   }
 
   habitBtns.forEach(btn => {
     btn.addEventListener('click', () => renderHabitCalendar(btn.dataset.habit));
   });
 
+  // Render default habit on load
   if (habitBtns.length > 0) renderHabitCalendar(habitBtns[0].dataset.habit);
 
 });

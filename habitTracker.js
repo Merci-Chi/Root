@@ -84,3 +84,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+#habitCalendarContainer {
+  overflow-y: auto;
+  max-height: 75vh;
+  padding: 10px;
+}
+
+.month {
+  display: grid;
+  grid-template-columns: repeat(31, 1fr);
+  gap: 2px;
+  margin-bottom: 20px; /* separate months visually */
+}
+
+.monthLabel {
+  grid-column: span 31;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+  background-color: black;       /* add background to cover day boxes behind */
+  position: sticky;              /* make label stick */
+  top: 0;                        /* stick to top of scroll container */
+  z-index: 10;                   /* above day boxes */
+  padding: 2px 0;                /* small padding */
+  border-bottom: 1px solid white; /* optional separator line */
+}

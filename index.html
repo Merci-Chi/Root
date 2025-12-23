@@ -293,6 +293,35 @@
     </a>
   </div>
 
+   <!-- External JS file -->
+  <script src="app.js"></script>
+
+  <!-- Your new inline JavaScript -->
+  <script>
+    // Get today's date in YYYY-MM-DD format
+    const today = new Date().toISOString().split('T')[0];
+
+    // Set the placeholder to today's date
+    document.getElementById('taskDate').placeholder = today;
+
+    // Load saved note from localStorage (if exists)
+    const savedNote = localStorage.getItem('note');
+    if (savedNote) {
+      document.getElementById('noteContainer').innerText = savedNote;
+    } else {
+      // If no saved note, set it to a default message (optional)
+      document.getElementById('noteContainer').innerText = 'Enter your notes here...';
+    }
+
+    // Save note to localStorage when the 'Save' button is clicked
+    document.getElementById('saveNoteBtn').addEventListener('click', function() {
+      const noteContent = document.getElementById('noteContainer').innerText;
+      localStorage.setItem('note', noteContent);
+    });
+  </script>
+
+</body>
+</html>
   <script src="app.js"></script>
 </body>
 </html>

@@ -1,23 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My App</title>
-
-    <!-- App Icons for different screen sizes -->
-    <link rel="icon" href="path/to/icon-192.png" sizes="192x192">
-    <link rel="icon" href="path/to/icon-512.png" sizes="512x512">
-
-    <!-- Optional: Manifest file for Progressive Web App (PWA) -->
-    <link rel="manifest" href="manifest.json">
-</head>
-<body>
-    <!-- Your content here -->
-</body>
-</html>
-
-
 // ---------- DATE HEADER ----------
 const currentDateEl = document.getElementById('currentDate');
 const today = new Date();
@@ -179,4 +159,3 @@ taskDate.value = todayISO;  // This sets the date picker to today's date
 
 // Initial render
 renderTasks();
-

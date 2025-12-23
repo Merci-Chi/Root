@@ -96,6 +96,17 @@
       opacity: 0.6;
     }
 
+    /* Notes Container with Transparent Black Background */
+    #noteContainer {
+      background: rgba(0, 0, 0, 0.5); /* Transparent black */
+      border: 2px solid white;
+      box-shadow: 0 0 15px white;
+      padding: 20px;
+      width: 90%;
+      max-width: 500px;
+      margin-bottom: 20px;
+    }
+
     /* Bottom Bar Style */
     #bottomBar {
       position: fixed;
@@ -145,18 +156,21 @@
     /* Scheduled Task Input Fields and Add Task Button */
     #taskInput, #taskDate, #addTask {
       width: 100%; /* Full width to match the container */
-      padding: 12px; /* Consistent padding */
+      padding: 12px; /* Same padding as the "Add Task" button */
       margin-bottom: 10px; /* Space between elements */
       background: black;
       color: white;
       border: 1px solid white;
       font-family: 'Architects Daughter', cursive;
-      font-size: 1rem; /* Same font size as "Add Task" */
-      box-shadow: 0 0 8px white;
+      font-size: 1rem; /* Same font size as "Add Task" button */
+      box-sizing: border-box; /* Include padding in width/height */
+      box-shadow: 0 0 8px white; /* Subtle white shadow */
     }
 
     /* Ensure Add Task Button has same size as inputs */
     #addTask {
+      width: 100%; /* Full width to match the inputs */
+      padding: 12px; /* Same padding as the inputs */
       font-size: 1rem; /* Consistent font size */
       cursor: pointer;
     }

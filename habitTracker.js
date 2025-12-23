@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         dayBox.textContent = day;
 
         const key = `${currentYear}-${month + 1}-${day}`;
+
         if (data[key] || isHabitDoneFromTasks(habit, currentYear, month, day)) {
           dayBox.classList.add('completed');
         }
@@ -64,14 +65,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Attach click events to buttons
   habitBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      renderHabitCalendar(btn.dataset.habit);
-    });
+    btn.addEventListener('click', () => renderHabitCalendar(btn.dataset.habit));
   });
 
   // Render default habit on load
   if (habitBtns.length > 0) renderHabitCalendar(habitBtns[0].dataset.habit);
 
 });
-

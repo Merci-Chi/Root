@@ -18,19 +18,18 @@
       background: black; /* fallback */
     }
 
-   body {
-  background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, rgba(0,0,0,1) 100%),
-              url('Forest.JPG') no-repeat center center fixed;
-  background-size: cover;
-  color: white;
-  font-family: 'Architects Daughter', cursive;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  padding-bottom: 600px; /* Increase this value to add extra space at the bottom */
-}
-
+    body {
+      background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, rgba(0,0,0,1) 100%),
+                  url('Forest.JPG') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      font-family: 'Architects Daughter', cursive;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      padding-bottom: 300px; /* Added space for the bottom bar */
+    }
 
     h1 {
       font-family: 'Luckiest Guy', cursive;
@@ -44,7 +43,7 @@
       margin-bottom: 5px;
     }
 
-     #todayTasks {
+    #todayTasks {
       list-style: none;
       padding: 0;
       margin-bottom: 20px;
@@ -160,51 +159,20 @@
       outline: none;
     }
 
-/* Task Description Input */
-#taskInput {
-  width: 100%; /* Adjust the width as needed */
-  padding: 12px;
-  margin-bottom: 10px;
-  background: black;
-  color: white;
-  border: 1px solid white;
-  font-family: 'Architects Daughter', cursive;
-  font-size: 1rem;
-  box-sizing: border-box;
-  box-shadow: 0 0 8px white;
-}
-
-/* Task Date Input with Glow */
-#taskDate {
-  width: 93%; /* Adjust this width value as needed */
-  padding: 12px;
-  margin-bottom: 10px;
-  background: black;
-  color: white;
-  border: 1px solid white;
-  font-family: 'Architects Daughter', cursive;
-  font-size: 1rem;
-  box-sizing: border-box;
-  box-shadow: 0 0 15px 5px rgba(0, 255, 255, 0.7); /* Glowing effect */
-}
-
-
-/* Add Task Button */
-#addTask {
-  width: 50%; /* Adjust this width value as needed */
-  padding: 12px;
-  margin-bottom: 10px;
-  background: black;
-  color: white;
-  border: 1px solid white;
-  font-family: 'Architects Daughter', cursive;
-  font-size: 1rem;
-  cursor: pointer;
-  box-sizing: border-box;
-  box-shadow: 0 0 8px white;
-}
-
-
+    /* Scheduled Task Input Fields and Add Task Button */
+    #taskInput, #taskDate, #addTask {
+      width: auto; /* Set width to auto so it doesn't take up the full container */
+      max-width: 100%; /* Ensure it won't overflow */
+      padding: 12px; /* Same padding as the "Add Task" button */
+      margin-bottom: 10px; /* Space between elements */
+      background: black;
+      color: white;
+      border: 1px solid white;
+      font-family: 'Architects Daughter', cursive;
+      font-size: 1rem; /* Same font size as "Add Task" button */
+      box-sizing: border-box; /* Include padding in width/height */
+      box-shadow: 0 0 8px white; /* Subtle white shadow */
+    }
 
     /* Ensure Add Task Button has same size as inputs */
     #addTask {
@@ -212,6 +180,18 @@
       padding: 12px; /* Same padding as the inputs */
       font-size: 1rem; /* Consistent font size */
       cursor: pointer;
+    }
+
+    /* Task Completion Ratio (1/3) */
+    #taskCounter {
+      padding: 5px 10px; /* Same padding as the "Save" button */
+      font-family: 'Architects Daughter', cursive;
+      font-size: 1rem; /* Same font size as the "Save" button */
+      background: black; /* Same background as the "Save" button */
+      color: white; /* White text */
+      border: 1px solid white; /* White border like the button */
+      box-shadow: 0 0 8px white; /* Subtle white shadow like the button */
+      cursor: default; /* Prevent it from being clickable */
     }
 
   </style>
@@ -223,19 +203,9 @@
 
   <!-- TODAY'S TASKS -->
   <h2>Today’s Tasks <span id="taskCounter">0/0</span></h2>
-  <ul id="todayTasks"></ul>
-
-      /* Task Completion Ratio (1/3) */
-#taskCounter {
-  padding: 5px 10px; /* Same padding as the "Save" button */
-  font-family: 'Architects Daughter', cursive;
-  font-size: 1rem; /* Same font size as the "Save" button */
-  background: black; /* Same background as the "Save" button */
-  color: white; /* White text */
-  border: 1px solid white; /* White border like the button */
-  box-shadow: 0 0 8px white; /* Subtle white shadow like the button */
-  cursor: default; /* Prevent it from being clickable */
-}
+  <div id="todayTasks" class="container">
+    <ul id="todayTasksList"></ul>
+  </div>
 
   <!-- NOTES HEADER + SAVE BUTTON -->
   <div style="display:flex; align-items:center; margin-bottom:10px;">
@@ -257,19 +227,6 @@
   <h2>Scheduled Tasks</h2>
   <div class="container">
     <input id="taskInput" placeholder="Task description" />
-    <input id="taskDate" type="date"; style="
-        padding:5px 10px" />
+    <input id="taskDate" type="date" />
     <button id="addTask">Add Task</button>
-    <ul id="taskList"></ul>
-  </div>
-
-  <!-- BOTTOM BUTTON BAR -->
-  <div id="bottomBar">
-    <button class="bottomBtn" style="background-image: url('Tracker.PNG');"></button> <!-- Button 1 with icon -->
-    <button class="bottomBtn" style="background-image: url('Settings.PNG');"></button> <!-- Button 2 with icon -->
-    <button class="bottomBtn" style="background-image: url('Button.PNG');"></button> <!-- Button 3 with icon -->
-  </div>
-
-  <script src="app.js"></script>
-</body>
-</html>
+    <

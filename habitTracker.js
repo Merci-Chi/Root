@@ -1,0 +1,68 @@
+// ---------- HABIT TRACKER ----------
+
+const habitCalendarContainer = document.getElementById('habitCalendarContainer');
+const habitBtns = document.querySelectorAll('.habitBtn');
+const today = new Date();
+const currentYear = today.getFullYear();
+
+// Helper: get number of days in a month
+function getDaysInMonth(month, year) {
+  return new Date(year, month + 1, 0).getDate();
+}
+
+// Load habit data from localStorage
+function loadHabitData(habit) {
+  return JSON.parse(localStorage.getItem(`habit-${habit}`)) || {};
+}
+
+// Save habit data to localStorage
+function saveHabitData(habit, data) {
+  localStorage.setItem(`habit-${habit}`, JSON.stringify(data));
+}
+
+// Render full-year calendar for a given habit
+function renderHabitCalendar(habit) {
+  habitCalendarContainer.innerHTML = '';
+  const data = loadHabitData(habit);
+
+  for (let month = 0; month < 12; month++) {
+    const monthDiv = document.createElement('div');
+    monthDiv.classList.add('month');
+
+    // Month label
+    const monthLabel = document.createElement('div');
+    monthLabel.classList.add('monthLabel');
+    monthLabel.textContent = new Date(currentYear, month).toLocaleString('default', { month: 'long' });
+    monthDiv.appendChild(monthLabel);
+
+    const daysInMonth = getDaysInMonth(month, currentYear);
+    for (let day = 1; day <= daysInMonth; day++) {
+      const dayBox = document.createElement('div');
+      dayBox.classList.add('dayBox');
+      dayBox.textContent = day;
+
+      const key = `${currentYear}-${month + 1}-${day}`;
+      if (data[key]) dayBox.classList.add('completed');
+
+      dayBox.addEventListener('click', () => {
+        data[key] = !data[key];
+        saveHabitData(habit, data);
+        dayBox.classList.toggle('completed');
+      });
+
+      monthDiv.appendChild(dayBox);
+    }
+
+    habitCalendarContainer.appendChild(monthDiv);
+  }
+}
+
+// Attach click events to habit buttons
+habitBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    renderHabitCalendar(btn.dataset.habit);
+  });
+});
+
+// Render default habit calendar on load
+if (habitBtns.length > 0) renderHabitCalendar(habitBtns[0].dataset.habit);

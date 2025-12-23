@@ -160,67 +160,42 @@ taskDate.value = todayISO;  // This sets the date picker to today's date
 // Initial render
 renderTasks();
 
-const habitBody = document.getElementById('habitBody');
-const addHabitBtn = document.getElementById('addHabitBtn');
-const newHabit = document.getElementById('newHabit');
-
-// Load habits from localStorage
-let habits = JSON.parse(localStorage.getItem('habits')) || [];
-
-// Render the table
-function renderHabits() {
-  habitBody.innerHTML = '';
-  const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-
-  habits.forEach((habit, index) => {
-    const tr = document.createElement('tr');
-    
-    // Habit name
-    const tdName = document.createElement('td');
-    tdName.textContent = habit.name;
-    tr.appendChild(tdName);
-
-    // Days
-    let streak = 0;
-    weekDays.forEach((day, i) => {
-      const td = document.createElement('td');
-      td.dataset.habitIndex = index;
-      td.dataset.dayIndex = i;
-
-      if (habit.days[i]) {
-        td.classList.add('completed');
-        streak++;
-      }
-
-      td.addEventListener('click', () => {
-        habit.days[i] = !habit.days[i];
-        localStorage.setItem('habits', JSON.stringify(habits));
-        renderHabits();
-      });
-
-      tr.appendChild(td);
-    });
-
-    // Streak
-    const tdStreak = document.createElement('td');
-    tdStreak.textContent = streak;
-    tr.appendChild(tdStreak);
-
-    habitBody.appendChild(tr);
-  });
+// ---------- WEB NOTIFICATIONS ----------
+if ('Notification' in window) {
+  if (Notification.permission === 'default') {
+    Notification.requestPermission();
+  }
 }
 
-// Add new habit
-addHabitBtn.addEventListener('click', () => {
-  const name = newHabit.value.trim();
-  if (!name) return;
+function sendNotification(title, body) {
+  if (Notification.permission === 'granted') {
+    new Notification(title, { body });
+  }
+}
 
-  habits.push({ name, days: [false, false, false, false, false, false, false] });
-  localStorage.setItem('habits', JSON.stringify(habits));
-  newHabit.value = '';
-  renderHabits();
-});
+// Notify user about today's incomplete tasks on page load
+const todayTaskDesc = tasks
+  .filter(task => task.date === todayISO && !task.done)
+  .map(task => task.desc)
+  .join(', ');
 
-// Initial render
-renderHabits();
+if (todayTaskDesc) {
+  sendNotification("Today's Tasks", todayTaskDesc);
+}
 
+// Optional: Schedule daily 9:00 AM reminder
+function scheduleDailyReminder(hour, minute) {
+  const now = new Date();
+  const next = new Date();
+  next.setHours(hour, minute, 0, 0);
+  if (next < now) next.setDate(next.getDate() + 1);
+
+  const timeout = next.getTime() - now.getTime();
+  setTimeout(() => {
+    sendNotification("Daily Reminder", "Check your tasks and notes!");
+    scheduleDailyReminder(hour, minute); // reschedule for tomorrow
+  }, timeout);
+}
+
+// Uncomment below line to enable daily 9 AM reminder
+scheduleDailyReminder(9, 0);

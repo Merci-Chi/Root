@@ -17,12 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem(`habit-${habit}`, JSON.stringify(data));
   }
 
-  // Load tasks from app.js
   function loadScheduledTasks() {
     return JSON.parse(localStorage.getItem('scheduledTasks')) || [];
   }
 
-  // Check if habit should be marked done based on tasks
   function isHabitDoneFromTasks(habit, year, month, day) {
     const tasks = loadScheduledTasks();
     const keyDate = `${year}-${month + 1}-${day}`;
@@ -50,12 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const key = `${currentYear}-${month + 1}-${day}`;
 
-        // Mark completed if either manually toggled or task is done
         if (data[key] || isHabitDoneFromTasks(habit, currentYear, month, day)) {
           dayBox.classList.add('completed');
         }
 
-        // Manual toggle
         dayBox.addEventListener('click', () => {
           data[key] = !data[key];
           saveHabitData(habit, data);
@@ -69,19 +65,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Attach click events to habit buttons
+  // Attach click events to buttons
   habitBtns.forEach(btn => {
     btn.addEventListener('click', () => renderHabitCalendar(btn.dataset.habit));
   });
 
-  // Default render
+  // Render default habit on load
   if (habitBtns.length > 0) renderHabitCalendar(habitBtns[0].dataset.habit);
-
-  // Optional: Re-render habit calendar whenever tasks are updated
-  // This will keep it in sync if tasks are checked/unchecked
-  window.addEventListener('storage', () => {
-    const activeHabit = document.querySelector('.habitBtn.active')?.dataset.habit || habitBtns[0].dataset.habit;
-    renderHabitCalendar(activeHabit);
-  });
 
 });

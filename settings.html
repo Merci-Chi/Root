@@ -19,7 +19,8 @@
     }
 
     body {
-      background: url('Forest.JPG') no-repeat center center fixed;
+     background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, rgba(0,0,0,1) 100%),
+                  url('Forest.JPG') no-repeat center center fixed;
       background-size: cover;
       color: white;
       font-family: 'Architects Daughter', cursive;
@@ -27,10 +28,7 @@
       flex-direction: column;
       align-items: center;
       padding: 20px;
-      padding-bottom: 600px; /* Add padding to adjust the bottom space */
-
-      position: relative; /* Needed to position the overlay */
-    }
+      padding-bottom: 600px;
 
     body::before {
       content: '';

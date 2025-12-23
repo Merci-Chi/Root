@@ -133,14 +133,13 @@
       outline: none;
     }
 
- #habitButtons {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 5px; /* was 20px, reduced to 5px */
-  justify-content: center;
-}
-
+    #habitButtons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
   </style>
 </head>
 <body>
@@ -216,10 +215,6 @@
           monthLabel.classList.add('monthLabel');
           monthLabel.textContent = new Date(currentYear, month).toLocaleString('default', { month: 'long' });
           monthContainer.appendChild(monthLabel);
-          .monthContainer:first-child {
-  margin-top: 0; /* ensure no extra space above first month */
-}
-
 
           const monthDiv = document.createElement('div');
           monthDiv.classList.add('month');

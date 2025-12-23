@@ -19,17 +19,17 @@
     }
 
     body {
-  background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, rgba(0,0,0,1) 100%),
-              url('Forest.JPG') no-repeat center center fixed;
-  background-size: cover;
-  color: white;
-  font-family: 'Architects Daughter', cursive;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  padding-bottom: 150px; /* Increased space at the bottom (above the bottom bar) */
-}
+      background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, rgba(0,0,0,1) 100%),
+                  url('Forest.JPG') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      font-family: 'Architects Daughter', cursive;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      padding-bottom: 60px; /* Added space for the bottom bar */
+    }
 
     h1 {
       font-family: 'Luckiest Guy', cursive;
@@ -96,46 +96,40 @@
     }
 
     /* Bottom Bar Style */
-#bottomBar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  padding: 15px 0;
-  background: rgba(0,0,0,0.8);
-  z-index: 1000;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-}
+    #bottomBar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      padding: 15px 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 1000;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
 
-.bottomBtn {
-  padding: 12px 25px;
-  font-family: 'Architects Daughter', cursive;
-  font-size: 1.2rem;
-  background: #f1c40f; /* Bold yellow background */
-  color: white;
-  border: none;
-  border-radius: 30px; /* Rounded corners */
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* Subtle glow */
-  text-transform: uppercase; /* Makes text all caps */
-  transition: all 0.3s ease-in-out; /* Smooth hover transition */
-  cursor: pointer;
-}
+    .bottomBtn {
+      padding: 12px 20px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-family: 'Architects Daughter', cursive;
+      font-size: 1rem;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+    }
 
-.bottomBtn:hover {
-  background: #e67e22; /* Slightly darker orange on hover */
-  box-shadow: 0 0 15px rgba(255, 255, 255, 1); /* Glow effect on hover */
-}
+    .bottomBtn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+    }
 
-.bottomBtn:focus {
-  outline: none;
-}
-
-.bottomBtn:active {
-  background: #d35400; /* Even darker shade when clicked */
-}
-
+    .bottomBtn:focus {
+      outline: none;
+    }
   </style>
 </head>
 <body>

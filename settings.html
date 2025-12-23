@@ -4,30 +4,89 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Settings</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Luckiest+Guy&display=swap" rel="stylesheet">
+
   <style>
     body {
       background-color: darkgrey;
       color: white;
       font-family: 'Architects Daughter', cursive;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    /* BOTTOM BUTTON BAR */
+    #bottomBar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;  /* Full width */
+      display: flex;
+      justify-content: center; /* Center the buttons horizontally */
+      padding: 15px 0;  /* Added padding for better spacing */
+      background-color: rgba(0, 0, 0, 0.8); /* Apple-style black background */
+      border-radius: 40px; /* Oval container */
+      border: 2px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.5); /* Subtle white shadow */
+      z-index: 1000;
+    }
+
+    /* Styling the buttons as circles with icon */
+    .bottomBtn {
+      width: 60px;  /* Circular width */
+      height: 60px; /* Circular height */
+      border-radius: 50%;  /* Makes the buttons circular */
+      margin: 0 10px; /* Reduced space between buttons */
+      padding: 12px;
+      border: 2px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+      background-color: rgba(0, 0, 0, 0.8); /* Apple-style black background */
+      background-size: 50px 50px; /* Adjust the icon size inside the button */
+      background-position: center; /* Center the icon in the button */
+      background-repeat: no-repeat; /* Ensure the icon doesn't repeat */
+      transition: all 0.3s ease;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.3); /* Subtle shadow */
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .bottomBtn:hover {
+      background-color: rgba(0, 0, 0, 1);  /* Darker background on hover */
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.6); /* Stronger white shadow on hover */
+    }
+
+    .bottomBtn:focus {
+      outline: none;
     }
   </style>
 </head>
 <body>
+
   <h1>Settings Page</h1>
-  <p>This is a placeholder for your settings page.</p>
-</body>
+  <p style="text-align: center; font-size: 1.2rem;">This is the placeholder for your settings page.</p>
 
   <!-- BOTTOM BUTTON BAR -->
-<div id="bottomBar">
-  <a href="index.html">
-    <button class="bottomBtn" style="background-image: url('Tracking.PNG');"></button> <!-- Button 1 with icon -->
-  </a>
-  <a href="settings.html">
-    <button class="bottomBtn" style="background-image: url('Settings.PNG');"></button> <!-- Button 2 with icon -->
-  </a>
-  <a href="account.html">
-    <button class="bottomBtn" style="background-image: url('Button.PNG');"></button> <!-- Button 3 with icon -->
-  </a>
-</div>
+  <div id="bottomBar">
+    <a href="index.html">
+      <button class="bottomBtn" style="background-image: url('Tracking.PNG');"></button> <!-- Button 1 with icon -->
+    </a>
+    <a href="settings.html">
+      <button class="bottomBtn" style="background-image: url('Settings.PNG');"></button> <!-- Button 2 with icon -->
+    </a>
+    <a href="account.html">
+      <button class="bottomBtn" style="background-image: url('Button.PNG');"></button> <!-- Button 3 with icon -->
+    </a>
+  </div>
 
+</body>
 </html>

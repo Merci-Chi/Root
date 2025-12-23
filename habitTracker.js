@@ -1,4 +1,4 @@
-// ---------- HABIT TRACKER ----------
+// ---------- HABIT TRACKER WITH TASK SYNC ----------
 
 const habitCalendarContainer = document.getElementById('habitCalendarContainer');
 const habitBtns = document.querySelectorAll('.habitBtn');
@@ -18,6 +18,22 @@ function loadHabitData(habit) {
 // Save habit data to localStorage
 function saveHabitData(habit, data) {
   localStorage.setItem(`habit-${habit}`, JSON.stringify(data));
+}
+
+// Load scheduledTasks from app.js localStorage
+function loadScheduledTasks() {
+  return JSON.parse(localStorage.getItem('scheduledTasks')) || [];
+}
+
+// Check if a habit is completed on a given date based on tasks
+function isHabitDoneFromTasks(habit, year, month, day) {
+  const tasks = loadScheduledTasks();
+  const keyDate = `${year}-${month + 1}-${day}`;
+  return tasks.some(task => {
+    if (!task.done) return false;
+    const taskDate = task.date;
+    return taskDate === keyDate && task.desc === habit;
+  });
 }
 
 // Render full-year calendar for a given habit
@@ -42,8 +58,13 @@ function renderHabitCalendar(habit) {
       dayBox.textContent = day;
 
       const key = `${currentYear}-${month + 1}-${day}`;
-      if (data[key]) dayBox.classList.add('completed');
 
+      // Sync with app.js tasks
+      if (data[key] || isHabitDoneFromTasks(habit, currentYear, month, day)) {
+        dayBox.classList.add('completed');
+      }
+
+      // Toggle manually
       dayBox.addEventListener('click', () => {
         data[key] = !data[key];
         saveHabitData(habit, data);

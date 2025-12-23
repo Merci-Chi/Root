@@ -219,74 +219,18 @@
       box-shadow: 0 0 8px white;
     }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Custom Date Picker</title>
-  <style>
-    #taskDate {
-      padding: 5px 10px;
-      background: black;
-      color: white;
-      border: 1px solid white;
-      font-family: 'Arial', sans-serif;
-      font-size: 1rem;
-      box-sizing: border-box;
-      box-shadow: 0 0 8px white;
-      width: 200px;
-    }
+<input id="taskDate" type="date" style="padding:5px 10px" value="" placeholder="" onfocus="this.placeholder = ''" onblur="this.placeholder = this.value === '' ? 'Select a Date' : this.value" />
 
-    #taskDate:focus {
-      outline: none;
-    }
+<script>
+  // Get today's date in YYYY-MM-DD format
+  const today = new Date().toISOString().split('T')[0];
 
-    #dateDisplay {
-      color: white;
-    }
-  </style>
-</head>
-<body style="background: black; text-align: center; padding: 50px;">
-  
-  <!-- Custom Date Input -->
-  <input id="taskDate" type="text" placeholder="Select a Date" />
+  // Set the input value to today's date
+  document.getElementById('taskDate').value = today;
 
-  <!-- Text to display current date -->
-  <p id="dateDisplay"></p>
-
-  <script>
-    // Get today's date in YYYY-MM-DD format
-    const today = new Date().toISOString().split('T')[0];
-
-    // Display the current date as the "placeholder" (for visual purposes)
-    document.getElementById('dateDisplay').innerText = `Current Date: ${today}`;
-
-    const taskDateInput = document.getElementById('taskDate');
-
-    // Set the default value as today's date
-    taskDateInput.value = today;
-
-    // Add event listener for focus event to remove the placeholder
-    taskDateInput.addEventListener('focus', function() {
-      if (taskDateInput.value === today) {
-        taskDateInput.value = ''; // Clear value on focus
-      }
-    });
-
-    // Add event listener for blur event to re-add the placeholder
-    taskDateInput.addEventListener('blur', function() {
-      if (taskDateInput.value === '') {
-        taskDateInput.value = today; // Set back to today's date if empty
-      }
-    });
-
-  </script>
-
-</body>
-</html>
-
-
+  // Set the placeholder to today's date
+  document.getElementById('taskDate').placeholder = today;
+</script>
 
     #addTask {
       width: 100%;

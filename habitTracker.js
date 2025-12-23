@@ -46,6 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
         dayBox.classList.add('dayBox');
         dayBox.textContent = day;
 
+        // Smaller boxes for better fit
+        dayBox.style.width = '20px';
+        dayBox.style.height = '20px';
+        dayBox.style.fontSize = '0.65rem';
+        dayBox.style.lineHeight = '20px';
+
         const key = `${currentYear}-${month + 1}-${day}`;
 
         if (data[key] || isHabitDoneFromTasks(habit, currentYear, month, day)) {
@@ -63,6 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       habitCalendarContainer.appendChild(monthDiv);
     }
+
+    // Scroll to the top so day 1 is visible
+    habitCalendarContainer.scrollTop = 0;
   }
 
   // Attach click events to buttons
@@ -74,3 +83,4 @@ document.addEventListener('DOMContentLoaded', () => {
   if (habitBtns.length > 0) renderHabitCalendar(habitBtns[0].dataset.habit);
 
 });
+

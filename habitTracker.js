@@ -46,12 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
         dayBox.classList.add('dayBox');
         dayBox.textContent = day;
 
-        // Smaller boxes for better fit
-        dayBox.style.width = '20px';
-        dayBox.style.height = '20px';
-        dayBox.style.fontSize = '0.65rem';
-        dayBox.style.lineHeight = '20px';
-
         const key = `${currentYear}-${month + 1}-${day}`;
 
         if (data[key] || isHabitDoneFromTasks(habit, currentYear, month, day)) {
@@ -70,8 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
       habitCalendarContainer.appendChild(monthDiv);
     }
 
-    // Scroll to the top so day 1 is visible
-    habitCalendarContainer.scrollTop = 0;
+    // Scroll to day 1 on the left
+    habitCalendarContainer.scrollLeft = 0;
   }
 
   // Attach click events to buttons
@@ -83,30 +77,3 @@ document.addEventListener('DOMContentLoaded', () => {
   if (habitBtns.length > 0) renderHabitCalendar(habitBtns[0].dataset.habit);
 
 });
-
-#habitCalendarContainer {
-  overflow-y: auto;
-  max-height: 75vh;
-  padding: 10px;
-}
-
-.month {
-  display: grid;
-  grid-template-columns: repeat(31, 1fr);
-  gap: 2px;
-  margin-bottom: 20px; /* separate months visually */
-}
-
-.monthLabel {
-  grid-column: span 31;
-  text-align: center;
-  font-weight: bold;
-  margin-bottom: 5px;
-  font-size: 0.9rem;
-  background-color: black;       /* add background to cover day boxes behind */
-  position: sticky;              /* make label stick */
-  top: 0;                        /* stick to top of scroll container */
-  z-index: 10;                   /* above day boxes */
-  padding: 2px 0;                /* small padding */
-  border-bottom: 1px solid white; /* optional separator line */
-}

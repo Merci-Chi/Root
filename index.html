@@ -18,18 +18,19 @@
       background: black; /* fallback */
     }
 
-    body {
-      background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, rgba(0,0,0,1) 100%),
-                  url('Forest.JPG') no-repeat center center fixed;
-      background-size: cover;
-      color: white;
-      font-family: 'Architects Daughter', cursive;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-      padding-bottom: 300px; /* Added space for the bottom bar */
-    }
+   body {
+  background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, rgba(0,0,0,1) 100%),
+              url('Forest.JPG') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  font-family: 'Architects Daughter', cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  padding-bottom: 600px; /* Increase this value to add extra space at the bottom */
+}
+
 
     h1 {
       font-family: 'Luckiest Guy', cursive;
@@ -47,13 +48,6 @@
       list-style: none;
       padding: 0;
       margin-bottom: 20px;
-      background: rgba(0, 0, 0, 0.5); /* Transparent black background */
-      border: 2px solid white;
-      box-shadow: 0 0 15px white;
-      padding: 20px;
-      width: 90%;
-      max-width: 500px;
-      border-radius: 8px; /* Optional: rounded corners for a smoother look */
     }
 
     #todayTasks li {
@@ -159,20 +153,50 @@
       outline: none;
     }
 
-    /* Scheduled Task Input Fields and Add Task Button */
-    #taskInput, #taskDate, #addTask {
-      width: auto; /* Set width to auto so it doesn't take up the full container */
-      max-width: 100%; /* Ensure it won't overflow */
-      padding: 12px; /* Same padding as the "Add Task" button */
-      margin-bottom: 10px; /* Space between elements */
-      background: black;
-      color: white;
-      border: 1px solid white;
-      font-family: 'Architects Daughter', cursive;
-      font-size: 1rem; /* Same font size as "Add Task" button */
-      box-sizing: border-box; /* Include padding in width/height */
-      box-shadow: 0 0 8px white; /* Subtle white shadow */
-    }
+/* Task Description Input */
+#taskInput {
+  width: 100%; /* Adjust the width as needed */
+  padding: 12px;
+  margin-bottom: 10px;
+  background: black;
+  color: white;
+  border: 1px solid white;
+  font-family: 'Architects Daughter', cursive;
+  font-size: 1rem;
+  box-sizing: border-box;
+  box-shadow: 0 0 8px white;
+}
+
+/* Task Date Input */
+#taskDate {
+  width: 93%; /* Adjust this width value as needed */
+  padding: 12px;
+  margin-bottom: 10px;
+  background: black;
+  color: white;
+  border: 1px solid white;
+  font-family: 'Architects Daughter', cursive;
+  font-size: 1rem;
+  box-sizing: border-box;
+  box-shadow: 0 0 8px white;
+}
+
+/* Add Task Button */
+#addTask {
+  width: 50%; /* Adjust this width value as needed */
+  padding: 12px;
+  margin-bottom: 10px;
+  background: black;
+  color: white;
+  border: 1px solid white;
+  font-family: 'Architects Daughter', cursive;
+  font-size: 1rem;
+  cursor: pointer;
+  box-sizing: border-box;
+  box-shadow: 0 0 8px white;
+}
+
+
 
     /* Ensure Add Task Button has same size as inputs */
     #addTask {
@@ -191,9 +215,7 @@
 
   <!-- TODAY'S TASKS -->
   <h2>Today’s Tasks <span id="taskCounter">0/0</span></h2>
-  <div id="todayTasks" class="container">
-    <ul id="todayTasksList"></ul>
-  </div>
+  <ul id="todayTasks"></ul>
 
   <!-- NOTES HEADER + SAVE BUTTON -->
   <div style="display:flex; align-items:center; margin-bottom:10px;">
@@ -215,7 +237,8 @@
   <h2>Scheduled Tasks</h2>
   <div class="container">
     <input id="taskInput" placeholder="Task description" />
-    <input id="taskDate" type="date" />
+    <input id="taskDate" type="date"; style="
+        padding:5px 10px" />
     <button id="addTask">Add Task</button>
     <ul id="taskList"></ul>
   </div>

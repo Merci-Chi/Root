@@ -95,35 +95,34 @@
       opacity: 0.6;
     }
 
-    /* Bottom Bar Style */
-    /* Bottom Bar Style */
+/* Bottom Bar Style */
 #bottomBar {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   display: flex;
-  justify-content: space-around;
-  padding: 15px 0;
+  justify-content: space-evenly; /* Evenly distribute buttons */
+  padding: 10px 0;  /* Reduced padding for shorter bar */
   background: rgba(0,0,0,0.8);
   z-index: 1000;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 25px 25px 0 0; /* Curved top corners */
 }
 
-/* Styling the buttons as circles */
+/* Styling the buttons as smaller circles */
 .bottomBtn {
-  width: 60px;  /* Set a specific width */
-  height: 60px; /* Set a specific height */
+  width: 50px;  /* Smaller width for the buttons */
+  height: 50px; /* Smaller height for the buttons */
   border-radius: 50%;  /* Makes the buttons circular */
-  padding: 12px;
+  padding: 8px; /* Reduced padding */
   border: 2px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.1);
   color: white;
   font-family: 'Architects Daughter', cursive;
   font-size: 1rem;
   transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -132,7 +131,7 @@
 
 .bottomBtn:hover {
   background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .bottomBtn:focus {
@@ -177,9 +176,9 @@
 
   <!-- BOTTOM BUTTON BAR -->
   <div id="bottomBar">
-    <button class="bottomBtn">Button 1</button>
-    <button class="bottomBtn">Button 2</button>
-    <button class="bottomBtn">Button 3</button>
+    <button class="bottomBtn">1</button>
+    <button class="bottomBtn">2</button>
+    <button class="bottomBtn">3</button>
   </div>
 
   <script src="app.js"></script>

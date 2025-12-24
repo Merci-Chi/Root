@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Personal</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Luckiest+Guy&display=swap" rel="stylesheet">
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: black; /* fallback */
+      position: relative;
+    }
+
+    body {
+      background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, rgba(0,0,0,1) 100%),
+                  url('Forest.JPG') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      font-family: 'Architects Daughter', cursive;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      padding-bottom: 600px;
+      z-index: 1; /* Ensure the content stays above the overlay */
+    }
+
+    /* Black transparent overlay above the background but below content */
+    .overlay {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7); /* Black overlay with 70% opacity */
+      z-index: 0; /* Ensure the overlay stays beneath the content */
+    }
+
+    h1 {
+      font-family: 'Luckiest Guy', cursive;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-family: 'Luckiest Guy', cursive;
+      font-size: 1.3rem;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+
+    /* Container for the settings content */
+    .settings-container {
+      border: 2px solid white;
+      box-shadow: 0 0 15px white;
+      padding: 20px;
+      width: 90%;
+      max-width: 500px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.7); /* Transparent black background */
+      position: relative; /* Ensure content stays above the overlay */
+      z-index: 1; /* Content should be above the overlay */
+    }
+
+    /* Style for inputs */
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 10px;
+      background: black;
+      color: white;
+      border: 1px solid white;
+      font-family: 'Architects Daughter', cursive;
+      font-size: 1rem;
+      box-shadow: 0 0 8px white;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    /* Bottom Bar Style */
+    #bottomBar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 15px 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 40px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+      z-index: 1000;
+    }
+
+    /* Styling the buttons as circles with icon */
+    .bottomBtn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin: 0 10px;
+      padding: 12px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      background-color: rgba(0, 0, 0, 0.8);
+      background-size: 50px 50px;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .bottomBtn:hover {
+      background-color: rgba(0, 0, 0, 1);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+    }
+
+    .bottomBtn:focus {
+      outline: none;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Transparent overlay above the background -->
+  <div class="overlay"></div>
+
+  <!-- Settings Content -->
+  <div class="settings-container">
+    <h1>Settings</h1>
+    <h2>Adjust your preferences below</h2>
+    <!-- Settings inputs go here -->
+  </div>
+
+  <!-- BOTTOM BUTTON BAR -->
+  <div id="bottomBar">
+    <a href="index.html">
+      <button class="bottomBtn" style="background-image: url('Tracker.PNG');"></button> <!-- Button 1 with icon -->
+    </a>
+    <a href="settings.html">
+      <button class="bottomBtn" style="background-image: url('Settings.PNG');"></button> <!-- Button 2 with icon -->
+    </a>
+    <a href="account.html">
+      <button class="bottomBtn" style="background-image: url('Button.PNG');"></button> <!-- Button 3 with icon -->
+    </a>
+  </div>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Habit Tracker">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <script src="app.js"></script>
+</body>
+</html>
+

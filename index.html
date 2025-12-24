@@ -320,21 +320,6 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-  <script>
-  // Get all bottom buttons
-  const bottomBtns = document.querySelectorAll('.bottomBtn');
-
-  bottomBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      // Remove 'active' from all buttons
-      bottomBtns.forEach(b => b.classList.remove('active'));
-      // Add 'active' to clicked button
-      btn.classList.add('active');
-    });
-  });
-</script>
-
-
   <script src="app.js"></script>
   <script src="habitTracker.js"></script>
 

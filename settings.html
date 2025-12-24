@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Settings</title>
+  <title>habit tracker</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,84 +11,86 @@
   <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Luckiest+Guy&display=swap" rel="stylesheet">
 
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      background: black; /* fallback */
-      position: relative;
-    }
-
     body {
-      background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, rgba(0,0,0,1) 100%),
-                  url('Forest.JPG') no-repeat center center fixed;
-      background-size: cover;
+      background-color: black;
       color: white;
       font-family: 'Architects Daughter', cursive;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-      padding-bottom: 600px;
-      z-index: 1; /* Ensure the content stays above the overlay */
-    }
-
-    /* Black transparent overlay above the background but below content */
-    .overlay {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7); /* Black overlay with 70% opacity */
-      z-index: 0; /* Ensure the overlay stays beneath the content */
+      margin: 0;
+      padding: 0;
     }
 
     h1 {
-      font-family: 'Luckiest Guy', cursive;
-      margin-bottom: 10px;
+      text-align: center;
+      margin-top: 50px;
     }
 
-    h2 {
-      font-family: 'Luckiest Guy', cursive;
-      font-size: 1.3rem;
-      margin-top: 10px;
-      margin-bottom: 5px;
-    }
-
-    /* Container for the settings content */
-    .settings-container {
-      border: 2px solid white;
-      box-shadow: 0 0 15px white;
-      padding: 20px;
-      width: 90%;
-      max-width: 500px;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      background: rgba(0, 0, 0, 0.7); /* Transparent black background */
-      position: relative; /* Ensure content stays above the overlay */
-      z-index: 1; /* Content should be above the overlay */
-    }
-
-    /* Style for inputs */
     input, button {
+      padding: 10px;
+      margin-top: 5px;
       width: 100%;
-      padding: 12px;
-      margin-bottom: 10px;
       background: black;
       color: white;
       border: 1px solid white;
-      font-family: 'Architects Daughter', cursive;
-      font-size: 1rem;
       box-shadow: 0 0 8px white;
+      font-family: 'Architects Daughter', cursive;
     }
 
-    button {
+    #habitCalendarContainer {
+      overflow-y: auto;
+      max-height: 75vh;
+  padding: 10px 10px 100px 10px; /* extra 100px at bottom */
+}
+
+.monthContainer {
+  margin-bottom: 20px;
+}
+
+.monthLabel {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  background-color: black;
+  padding: 10px 0;       /* taller box */
+  position: sticky;       /* stays fixed when scrolling vertically */
+  top: 5;                 /* sticks to top of container */
+  z-index: 3;             /* above day boxes */
+}
+
+.month {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 24px);
+  gap: 2px;
+  overflow-x: auto;       /* horizontal scroll only */
+  justify-content: start;
+  padding-bottom: 10px;   /* optional extra space below the row */
+}
+
+
+    .dayBox {
+      width: 24px;
+      height: 24px;
+      border: 1px solid white;
+      text-align: center;
+      font-size: 0.7rem;
+      line-height: 24px;
       cursor: pointer;
+      user-select: none;
+      background-color: rgba(0,0,0,0.5);
     }
 
-    /* Bottom Bar Style */
+    .dayBox.completed {
+      background-color: green;
+      color: white;
+    }
+
+    .dayBox:first-child {
+      position: sticky;
+      left: 0;
+      z-index: 2;
+      background-color: rgba(0,0,0,0.7);
+    }
+
+    /* BOTTOM BUTTON BAR */
     #bottomBar {
       position: fixed;
       bottom: 0;
@@ -104,7 +106,6 @@
       z-index: 1000;
     }
 
-    /* Styling the buttons as circles with icon */
     .bottomBtn {
       width: 60px;
       height: 60px;
@@ -133,32 +134,125 @@
       outline: none;
     }
 
+    #habitButtons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Transparent overlay above the background -->
-  <div class="overlay"></div>
-
-  <!-- Settings Content -->
-  <div class="settings-container">
-    <h1>Settings</h1>
-    <h2>Adjust your preferences below</h2>
-    <!-- Settings inputs go here -->
-  </div>
+  <h1>Account Page</h1>
+  <p style="text-align: center; font-size: 1.2rem;">This is the placeholder for your account page.</p>
 
   <!-- BOTTOM BUTTON BAR -->
   <div id="bottomBar">
     <a href="index.html">
-      <button class="bottomBtn" style="background-image: url('Tracker.PNG');"></button> <!-- Button 1 with icon -->
+      <button class="bottomBtn" style="background-image: url('Tracker.PNG');"></button>
     </a>
     <a href="settings.html">
-      <button class="bottomBtn" style="background-image: url('Settings.PNG');"></button> <!-- Button 2 with icon -->
+      <button class="bottomBtn" style="background-image: url('Settings.PNG');"></button>
     </a>
     <a href="account.html">
-      <button class="bottomBtn" style="background-image: url('Button.PNG');"></button> <!-- Button 3 with icon -->
+      <button class="bottomBtn" style="background-image: url('Button.PNG');"></button>
     </a>
   </div>
+
+  <h1>Habit Tracker</h1>
+
+  <div id="habitButtons">
+    <button class="habitBtn" data-habit="T-25">T-25</button>
+    <button class="habitBtn" data-habit="Bullet Journal">Bullet Journal</button>
+    <button class="habitBtn" data-habit="Miles">Miles</button>
+  </div>
+
+  <div id="habitCalendarContainer" class="container"></div>
+
+  <script src="app.js"></script>
+  <script src="habitTracker.js"></script>
+
+  <script>
+    // Adjust habitTracker.js to render month labels separately
+    document.addEventListener('DOMContentLoaded', () => {
+      const habitCalendarContainer = document.getElementById('habitCalendarContainer');
+      const habitBtns = document.querySelectorAll('.habitBtn');
+      const today = new Date();
+      const currentYear = today.getFullYear();
+
+      function getDaysInMonth(month, year) {
+        return new Date(year, month + 1, 0).getDate();
+      }
+
+      function loadHabitData(habit) {
+        return JSON.parse(localStorage.getItem(`habit-${habit}`)) || {};
+      }
+
+      function saveHabitData(habit, data) {
+        localStorage.setItem(`habit-${habit}`, JSON.stringify(data));
+      }
+
+      function loadScheduledTasks() {
+        return JSON.parse(localStorage.getItem('scheduledTasks')) || [];
+      }
+
+      function isHabitDoneFromTasks(habit, year, month, day) {
+        const tasks = loadScheduledTasks();
+        const keyDate = `${year}-${month + 1}-${day}`;
+        return tasks.some(task => task.done && task.date === keyDate && task.desc === habit);
+      }
+
+      function renderHabitCalendar(habit) {
+        habitCalendarContainer.innerHTML = '';
+        const data = loadHabitData(habit);
+
+        for (let month = 0; month < 12; month++) {
+          const monthContainer = document.createElement('div');
+          monthContainer.classList.add('monthContainer');
+
+          const monthLabel = document.createElement('div');
+          monthLabel.classList.add('monthLabel');
+          monthLabel.textContent = new Date(currentYear, month).toLocaleString('default', { month: 'long' });
+          monthContainer.appendChild(monthLabel);
+
+          const monthDiv = document.createElement('div');
+          monthDiv.classList.add('month');
+
+          const daysInMonth = getDaysInMonth(month, currentYear);
+          for (let day = 1; day <= daysInMonth; day++) {
+            const dayBox = document.createElement('div');
+            dayBox.classList.add('dayBox');
+            dayBox.textContent = day;
+
+            const key = `${currentYear}-${month + 1}-${day}`;
+
+            if (data[key] || isHabitDoneFromTasks(habit, currentYear, month, day)) {
+              dayBox.classList.add('completed');
+            }
+
+            dayBox.addEventListener('click', () => {
+              data[key] = !data[key];
+              saveHabitData(habit, data);
+              dayBox.classList.toggle('completed');
+            });
+
+            monthDiv.appendChild(dayBox);
+          }
+
+          monthContainer.appendChild(monthDiv);
+          habitCalendarContainer.appendChild(monthContainer);
+        }
+      }
+
+      habitBtns.forEach(btn => {
+        btn.addEventListener('click', () => renderHabitCalendar(btn.dataset.habit));
+      });
+
+      if (habitBtns.length > 0) renderHabitCalendar(habitBtns[0].dataset.habit);
+    });
+  </script>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Habit Tracker">
@@ -166,6 +260,5 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-  <script src="app.js"></script>
 </body>
 </html>

@@ -160,3 +160,18 @@ taskDate.value = todayISO;  // This sets the date picker to today's date
 // Initial render
 renderTasks();
 
+<script>
+  const bottomBtns = document.querySelectorAll('#bottomBar a');
+
+  bottomBtns.forEach(link => {
+    const btn = link.querySelector('.bottomBtn');
+    const href = link.getAttribute('href');
+
+    // If current URL matches the link href, add active
+    if (window.location.pathname.endsWith(href)) {
+      btn.classList.add('active');
+    }
+  });
+</script>
+
+
